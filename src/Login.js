@@ -29,11 +29,6 @@ class Login extends React.Component {
 
   handleChange(e, toUpdate) {
     switch (toUpdate) {
-      case 'username':
-        this.setState({
-          username: e.target.value,
-        });
-        break;
       case 'password':
         this.setState({
           password: e.target.value,
@@ -92,13 +87,20 @@ class Login extends React.Component {
     });
   }
 
+  handleUsernameChange(value) {
+    this.setState({
+      username: value,
+    });
+  }
+
   render() {
     return (
       <div>
         {this.state.displayLogin ? (
         <form id="login" onSubmit={(e) => this.handleLogin(e)}>
           <TextInput label={this.state.usernameLabel}
-            value={this.state.username} autocomplete="username" />
+            value={this.state.username} autocomplete="username"
+            onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <label>
             <span>{this.state.passwordLabel}</span>
@@ -125,12 +127,9 @@ class Login extends React.Component {
 
         {this.state.displayForgotten ? (
         <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)}>
-          <label>
-            <span>{this.state.usernameLabel}</span>
-            <input type="text" value={this.state.username}
-              autoComplete="username"
-              onChange={(e) => this.handleChange(e, 'username')} />
-          </label>
+          <TextInput label={this.state.usernameLabel}
+            value={this.state.username} autocomplete="username"
+            onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <input type="submit" value="Reset your password" />
         </form>
@@ -138,12 +137,9 @@ class Login extends React.Component {
 
         {this.state.displaySignup ? (
         <form id="signup" onSubmit={(e) => this.handleSignup(e)}>
-          <label>
-            <span>{this.state.usernameLabel}</span>
-            <input type="text" value={this.state.username}
-              autoComplete="username"
-              onChange={(e) => this.handleChange(e, 'username')} />
-          </label>
+          <TextInput label={this.state.usernameLabel}
+            value={this.state.username} autocomplete="username"
+            onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <label>
             <span>{this.state.passwordLabel}</span>
