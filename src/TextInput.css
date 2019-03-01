@@ -1,0 +1,13 @@
+label,
+label span {
+  display: block;
+}
+
+label {
+  margin: 0 0 1em;
+  cursor: pointer;
+}
+
+input[type=text] {
+  width: 100%;
+}

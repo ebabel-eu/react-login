@@ -1,4 +1,6 @@
 import React from 'react';
+
+import TextInput from './TextInput';
 import './Login.css';
 
 class Login extends React.Component {
@@ -6,7 +8,7 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      username: props.password || '',
+      username: props.username || '',
       password: props.password || '',
       email: props.email || '',
       usernameLabel: props.usernameLabel || 'Username',
@@ -95,12 +97,8 @@ class Login extends React.Component {
       <div>
         {this.state.displayLogin ? (
         <form id="login" onSubmit={(e) => this.handleLogin(e)}>
-          <label>
-            <span>{this.state.usernameLabel}</span>
-            <input type="text" value={this.state.username}
-              autoComplete="username"
-              onChange={(e) => this.handleChange(e, 'username')} />
-          </label>
+          <TextInput label={this.state.usernameLabel}
+            value={this.state.username} autocomplete="username" />
 
           <label>
             <span>{this.state.passwordLabel}</span>
