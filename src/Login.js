@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TextInput from './TextInput';
+import PasswordInput from './PasswordInput';
 import './Login.css';
 
 class Login extends React.Component {
@@ -29,11 +30,6 @@ class Login extends React.Component {
 
   handleChange(e, toUpdate) {
     switch (toUpdate) {
-      case 'password':
-        this.setState({
-          password: e.target.value,
-        });
-        break;
       case 'email':
         this.setState({
           email: e.target.value,
@@ -93,6 +89,12 @@ class Login extends React.Component {
     });
   }
 
+  handlePasswordChange(value) {
+    this.setState({
+      password: value,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -102,12 +104,9 @@ class Login extends React.Component {
             value={this.state.username} autocomplete="username"
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
-          <label>
-            <span>{this.state.passwordLabel}</span>
-            <input type="password" value={this.state.password}
-              autoComplete="current-password"
-              onChange={(e) => this.handleChange(e, 'password')} />
-          </label>
+          <PasswordInput label={this.state.passwordLabel}
+            value={this.state.password} autocomplete="password"
+            onValueChange={(value) => this.handlePasswordChange(value)} />
 
           <input type="submit" value="Login" />
 
@@ -141,12 +140,9 @@ class Login extends React.Component {
             value={this.state.username} autocomplete="username"
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
-          <label>
-            <span>{this.state.passwordLabel}</span>
-            <input type="password" value={this.state.password}
-              autoComplete="new-password"
-              onChange={(e) => this.handleChange(e, 'password')} />
-          </label>
+          <PasswordInput label={this.state.passwordLabel}
+            value={this.state.password} autocomplete="password"
+            onValueChange={(value) => this.handlePasswordChange(value)} />
 
           <label>
             <span>{this.state.emailLabel}</span>
