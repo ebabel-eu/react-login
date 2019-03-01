@@ -6,7 +6,12 @@ class Login extends React.Component {
     
     this.state = {
       username: '',
+      usernameLabel: 'Username',
       password: '',
+      passwordLabel: 'Password',
+      stayLoggedDuration: 14,
+      stayLoggedUnit: 'days',
+      stayLoggedDurationDescription: '2 weeks',
     };
   }
 
@@ -30,13 +35,14 @@ class Login extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
+    // todo: use Axios to submit this login payload to a given endpoint.
   }
 
   render() {
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <label>
-          <span>Username</span>
+          <span>{this.state.usernameLabel}</span>
           <input
             value={this.state.username}
             onChange={(e) => this.handleChange(e, 'username')}
@@ -44,7 +50,7 @@ class Login extends React.Component {
         </label>
         
         <label>
-          <span>Password</span>
+          <span>{this.state.passwordLabel}</span>
           <input
             value={this.state.password}
             onChange={(e) => this.handleChange(e, 'password')}
@@ -52,6 +58,10 @@ class Login extends React.Component {
         </label>
         
         <input type="submit" value="Login" />
+        
+        <label>
+          <input type="checkbox" /> Stay logged in for {this.state.stayLoggedDurationDescription}.
+        </label>
       </form>
     );
   }
