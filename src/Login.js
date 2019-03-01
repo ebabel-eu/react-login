@@ -137,7 +137,7 @@ class Login extends React.Component {
           <EmailInput label={this.state.emailLabel}
             value={this.state.email} autocomplete="email"
             onValueChange={(value) => this.handleEmailChange(value)} />
-'
+
           <SubmitButton label="Signup" />
         </form>
         ) : null}
