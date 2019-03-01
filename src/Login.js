@@ -3,6 +3,7 @@ import React from 'react';
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
+import SubmitButton from './SubmitButton';
 import './Login.css';
 
 class Login extends React.Component {
@@ -97,7 +98,7 @@ class Login extends React.Component {
             value={this.state.password} autocomplete="password"
             onValueChange={(value) => this.handlePasswordChange(value)} />
 
-          <input type="submit" value="Login" />
+          <SubmitButton label="Login" />
 
           <label>
             <input type="checkbox" defaultChecked={this.state.stayLogged} /> {this.state.stayLoggedLabel} {this.state.stayLoggedDurationDescription}
@@ -119,7 +120,7 @@ class Login extends React.Component {
             value={this.state.username} autocomplete="username"
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
-          <input type="submit" value="Reset your password" />
+          <SubmitButton label="Reset your password" />
         </form>
         ) : null}
 
@@ -137,7 +138,7 @@ class Login extends React.Component {
             value={this.state.email} autocomplete="email"
             onValueChange={(value) => this.handleEmailChange(value)} />
 '
-          <input type="submit" value="Signup" />
+          <SubmitButton label="Signup" />
         </form>
         ) : null}
       </div>
