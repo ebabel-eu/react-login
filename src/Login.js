@@ -2,6 +2,7 @@ import React from 'react';
 
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
+import EmailInput from './EmailInput';
 import './Login.css';
 
 class Login extends React.Component {
@@ -28,18 +29,6 @@ class Login extends React.Component {
     };
   }
 
-  handleChange(e, toUpdate) {
-    switch (toUpdate) {
-      case 'email':
-        this.setState({
-          email: e.target.value,
-        });
-        break;
-      default:
-        throw new Error(`Unexpected form field ${toUpdate}.`);
-    }
-  }
-  
   handleLogin(e) {
     e.preventDefault();
     console.log(this.state);
@@ -84,15 +73,15 @@ class Login extends React.Component {
   }
 
   handleUsernameChange(value) {
-    this.setState({
-      username: value,
-    });
+    this.setState({ username: value });
   }
 
   handlePasswordChange(value) {
-    this.setState({
-      password: value,
-    });
+    this.setState({ password: value });
+  }
+  
+  handleEmailChange(value) {
+    this.setState({ email: value });
   }
 
   render() {
@@ -141,15 +130,12 @@ class Login extends React.Component {
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <PasswordInput label={this.state.passwordLabel}
-            value={this.state.password} autocomplete="password"
+            value={this.state.password} autocomplete="new-password"
             onValueChange={(value) => this.handlePasswordChange(value)} />
 
-          <label>
-            <span>{this.state.emailLabel}</span>
-            <input type="email" value={this.state.email}
-              autoComplete="email"
-              onChange={(e) => this.handleChange(e, 'email')} />
-          </label>
+          <EmailInput label={this.state.emailLabel}
+            value={this.state.email} autocomplete="email"
+            onValueChange={(value) => this.handleEmailChange(value)} />
 '
           <input type="submit" value="Signup" />
         </form>
