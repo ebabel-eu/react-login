@@ -11,32 +11,33 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      username: props.username || '',
-      password: props.password || '',
-      email: props.email || '',
-      usernameLabel: props.usernameLabel || 'Username',
-      passwordLabel: props.passwordLabel || 'Password',
-      emailLabel: props.emailLabel || 'E-mail',
-      usernamePlaceholder: props.usernamePlaceholder || 'johnsmith or john.smith@company.eu',
-      passwordPlaceholder: props.passwordPlaceholder || 'Blanch3dalm0nd',
-      emailPlaceholder: props.emailPlaceholder || 'john.smith@company.eu',
-      stayLogged: props.stayLogged || false,
-      stayLoggedDuration: props.stayLoggedDuration || 14,
-      stayLoggedUnit: props.stayLoggedUnit || 'days',
-      stayLoggedLabel: props.stayLoggedLabel || 'Stay logged-in',
-      stayLoggedDurationDescription: props.stayLoggedDurationDescription || 'for 2 weeks',
-      forgottenLink: props.forgottenLink || 'Forgotten password?',
-      signupLink: props.signupLink || 'Need to signup for an account?',
-      displayLogin: props.displayLogin || true,
-      displayForgotten: props.displayForgotten || false,
-      displaySignup: props.displaySignup || false,
+      username: props.username,
+      password: props.password,
+      email: props.email,
+      stayLogged: props.stayLogged,
+      displayLogin: props.displayLogin,
+      displayForgotten: props.displayForgotten,
+      displaySignup: props.displaySignup,
     };
   }
 
   handleLogin(e) {
     e.preventDefault();
-    console.log(this.state);
+
+    const payload = {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      stayLogged: this.state.stayLogged,
+    };
+
+    if (this.state.stayLogged) {
+      payload.stayLoggedDuration = this.props.stayLoggedDuration;
+      payload.stayLoggedUnit = this.props.stayLoggedUnit;
+    }
+
     // todo: use Axios to submit this login payload to a given endpoint.
+    console.log(payload);
   }
 
   handleForgotten(e) {
@@ -93,71 +94,102 @@ class Login extends React.Component {
       <div>
         {this.state.displayLogin ? (
         <form id="login" onSubmit={(e) => this.handleLogin(e)}>
-          <TextInput label={this.state.usernameLabel}
+          <TextInput
+            label={this.props.usernameLabel}
             value={this.state.username} autocomplete="username"
             required
-            placeholder={this.state.usernamePlaceholder}
+            placeholder={this.props.usernamePlaceholder}
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
-          <PasswordInput label={this.state.passwordLabel}
+          <PasswordInput
+            label={this.props.passwordLabel}
             value={this.state.password} autocomplete="password"
             required
-            placeholder={this.state.passwordPlaceholder}
+            placeholder={this.props.passwordPlaceholder}
             onValueChange={(value) => this.handlePasswordChange(value)} />
 
-          <SubmitButton label="Login" />
+          <SubmitButton label={this.props.loginButtonText} />
 
           <label>
-            <input type="checkbox" defaultChecked={this.state.stayLogged} /> {this.state.stayLoggedLabel} {this.state.stayLoggedDurationDescription}
+            <input type="checkbox" defaultChecked={this.state.stayLogged} /> {this.props.stayLoggedLabel} {this.props.stayLoggedDurationDescription}
           </label>
 
           <p>
-            <a href="#forgotten" onClick={(e) => this.switchToForgotten(e)}>{this.state.forgottenLink}</a>
+            <a href="#forgotten" onClick={(e) => this.switchToForgotten(e)}>{this.props.forgottenLink}</a>
           </p>
 
           <p>
-            <a href="#signup" onClick={(e) => this.switchToSignup(e)}>{this.state.signupLink}</a>
+            <a href="#signup" onClick={(e) => this.switchToSignup(e)}>{this.props.signupLink}</a>
           </p>
         </form>
         ) : null}
 
         {this.state.displayForgotten ? (
         <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)}>
-          <EmailInput label={this.state.emailLabel}
+          <EmailInput
+            label={this.props.emailLabel}
             value={this.state.email} autocomplete="email"
             required
-            placeholder={this.state.emailPlaceholder}
+            placeholder={this.props.emailPlaceholder}
             onValueChange={(value) => this.handleEmailChange(value)} />
 
-          <SubmitButton label="Reset your password" />
+          <SubmitButton label={this.props.forgottenButtonText} />
         </form>
         ) : null}
 
         {this.state.displaySignup ? (
         <form id="signup" onSubmit={(e) => this.handleSignup(e)}>
-          <TextInput label={this.state.usernameLabel}
+          <TextInput
+            label={this.props.usernameLabel}
             value={this.state.username} autocomplete="username"
             required
-            placeholder={this.state.usernamePlaceholder}
+            placeholder={this.props.usernamePlaceholder}
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
-          <PasswordInput label={this.state.passwordLabel}
+          <PasswordInput
+            label={this.props.passwordLabel}
             value={this.state.password} autocomplete="new-password"
             required
-            placeholder={this.state.passwordPlaceholder}
+            placeholder={this.props.passwordPlaceholder}
             onValueChange={(value) => this.handlePasswordChange(value)} />
 
-          <EmailInput label={this.state.emailLabel}
+          <EmailInput
+            label={this.props.emailLabel}
             value={this.state.email} autocomplete="email"
-            placeholder={this.state.emailPlaceholder}
+            placeholder={this.props.emailPlaceholder}
             onValueChange={(value) => this.handleEmailChange(value)} />
 
-          <SubmitButton label="Signup" />
+          <SubmitButton label={this.props.signupButtonText} />
         </form>
         ) : null}
       </div>
     );
   }
 }
+
+Login.defaultProps = {
+  username: '',
+  password: '',
+  email: '',
+  stayLogged: false,
+  usernameLabel: 'Username',
+  passwordLabel: 'Password',
+  emailLabel: 'E-mail',
+  usernamePlaceholder: 'johnsmith or john.smith@company.eu',
+  passwordPlaceholder: 'Blanch3dalm0nd',
+  emailPlaceholder: 'john.smith@company.eu',
+  stayLoggedDuration: 14,
+  stayLoggedUnit: 'days',
+  stayLoggedLabel: 'Stay logged-in',
+  stayLoggedDurationDescription: 'for 2 weeks',
+  forgottenLink: 'Forgotten password?',
+  signupLink: 'Need to signup for an account?',
+  displayLogin: true,
+  displayForgotten: false,
+  displaySignup: false,
+  loginButtonText: 'Login',
+  forgottenButtonText: 'Reset your password',
+  signupButtonText: 'Signup',
+};
 
 export default Login;
