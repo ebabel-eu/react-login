@@ -17,6 +17,9 @@ class Login extends React.Component {
       usernameLabel: props.usernameLabel || 'Username',
       passwordLabel: props.passwordLabel || 'Password',
       emailLabel: props.emailLabel || 'E-mail',
+      usernamePlaceholder: props.usernamePlaceholder || 'johnsmith or john.smith@company.eu',
+      passwordPlaceholder: props.passwordPlaceholder || 'Blanch3dalm0nd',
+      emailPlaceholder: props.emailPlaceholder || 'john.smith@company.eu',
       stayLogged: props.stayLogged || false,
       stayLoggedDuration: props.stayLoggedDuration || 14,
       stayLoggedUnit: props.stayLoggedUnit || 'days',
@@ -35,17 +38,17 @@ class Login extends React.Component {
     console.log(this.state);
     // todo: use Axios to submit this login payload to a given endpoint.
   }
-  
+
   handleForgotten(e) {
     e.preventDefault();
     this.switchToLogin(e);
   }
-  
+
   handleSignup(e) {
     e.preventDefault();
     this.switchToLogin(e);
   }
-  
+
   switchToLogin(e) {
     e.preventDefault();
     this.setState({
@@ -54,7 +57,7 @@ class Login extends React.Component {
       displaySignup: false,
     });
   }
-  
+
   switchToForgotten(e) {
     e.preventDefault();
     this.setState({
@@ -63,7 +66,7 @@ class Login extends React.Component {
       displaySignup: false,
     });
   }
-  
+
   switchToSignup(e) {
     e.preventDefault();
     this.setState({
@@ -80,7 +83,7 @@ class Login extends React.Component {
   handlePasswordChange(value) {
     this.setState({ password: value });
   }
-  
+
   handleEmailChange(value) {
     this.setState({ email: value });
   }
@@ -92,12 +95,14 @@ class Login extends React.Component {
         <form id="login" onSubmit={(e) => this.handleLogin(e)}>
           <TextInput label={this.state.usernameLabel}
             value={this.state.username} autocomplete="username"
-            required={true}
+            required
+            placeholder={this.state.usernamePlaceholder}
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <PasswordInput label={this.state.passwordLabel}
             value={this.state.password} autocomplete="password"
-            required={true}
+            required
+            placeholder={this.state.passwordPlaceholder}
             onValueChange={(value) => this.handlePasswordChange(value)} />
 
           <SubmitButton label="Login" />
@@ -118,10 +123,11 @@ class Login extends React.Component {
 
         {this.state.displayForgotten ? (
         <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)}>
-          <TextInput label={this.state.usernameLabel}
-            value={this.state.username} autocomplete="username"
-            required={true}
-            onValueChange={(value) => this.handleUsernameChange(value)} />
+          <EmailInput label={this.state.emailLabel}
+            value={this.state.email} autocomplete="email"
+            required
+            placeholder={this.state.emailPlaceholder}
+            onValueChange={(value) => this.handleEmailChange(value)} />
 
           <SubmitButton label="Reset your password" />
         </form>
@@ -131,15 +137,19 @@ class Login extends React.Component {
         <form id="signup" onSubmit={(e) => this.handleSignup(e)}>
           <TextInput label={this.state.usernameLabel}
             value={this.state.username} autocomplete="username"
+            required
+            placeholder={this.state.usernamePlaceholder}
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <PasswordInput label={this.state.passwordLabel}
             value={this.state.password} autocomplete="new-password"
+            required
+            placeholder={this.state.passwordPlaceholder}
             onValueChange={(value) => this.handlePasswordChange(value)} />
 
           <EmailInput label={this.state.emailLabel}
             value={this.state.email} autocomplete="email"
-            required={true}
+            placeholder={this.state.emailPlaceholder}
             onValueChange={(value) => this.handleEmailChange(value)} />
 
           <SubmitButton label="Signup" />

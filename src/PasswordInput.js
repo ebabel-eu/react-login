@@ -13,6 +13,7 @@ class PasswordInput extends React.Component {
         <input type="password" value={this.props.value}
           autoComplete={this.props.autocomplete}
           required={this.props.required}
+          placeholder={this.props.placeholder}
           onChange={(e) => this.handleChange(e)} />
       </label>
     );
