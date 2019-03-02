@@ -75,3 +75,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+## todo
+
+- Add onChange to checkbox stayLogged so it updates the state.
+- Create a separate checkbox component.
+- Add Jest unit tests.
+- Move all components of Login into separate repositories.
