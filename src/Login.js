@@ -42,38 +42,20 @@ class Login extends React.Component {
 
   handleForgotten(e) {
     e.preventDefault();
-    this.switchToLogin(e);
+    this.switchTo(e, 'login');
   }
 
   handleSignup(e) {
     e.preventDefault();
-    this.switchToLogin(e);
+    this.switchTo(e, 'login');
   }
 
-  switchToLogin(e) {
+  switchTo(e, target) {
     e.preventDefault();
     this.setState({
-      displayLogin: true,
-      displayForgotten: false,
-      displaySignup: false,
-    });
-  }
-
-  switchToForgotten(e) {
-    e.preventDefault();
-    this.setState({
-      displayLogin: false,
-      displayForgotten: true,
-      displaySignup: false,
-    });
-  }
-
-  switchToSignup(e) {
-    e.preventDefault();
-    this.setState({
-      displayLogin: false,
-      displayForgotten: false,
-      displaySignup: true,
+      displayLogin: target === 'login',
+      displayForgotten: target === 'forgotten',
+      displaySignup: target === 'signup',
     });
   }
 
@@ -115,11 +97,11 @@ class Login extends React.Component {
           </label>
 
           <p>
-            <a href="#forgotten" onClick={(e) => this.switchToForgotten(e)}>{this.props.forgottenLink}</a>
+            <a href="#forgotten" onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a>
           </p>
 
           <p>
-            <a href="#signup" onClick={(e) => this.switchToSignup(e)}>{this.props.signupLink}</a>
+            <a href="#signup" onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a>
           </p>
         </form>
         ) : null}
