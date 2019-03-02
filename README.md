@@ -1,25 +1,53 @@
-# react-login
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
-
-When checking out this repository, there is no need to bootstrap it again, this was a one-off operation with the command `npx create-react-app react-login`
+# `<Login />` component (React.js)
+Reusable generic login, including a password reset and an account signup. It communicates with any backend web services API asynchronolously. The styling is functional but minimal, so that it's easy to customize.
 
 ## Install
 ```
 npm install
 ```
 
+## Usage of the Login component
+```
+import Login from './Login';
+
+<Login />
+```
+
+or (all props are optional and have default values)
+
+```
+import Login from './Login';
+
+<Login
+  usernameLabel="Gebruikersnaam"
+  usernamePlaceholder="bartvanveldhoven"
+  passwordLabel="Wachtwoord"
+  passwordPlaceholder="Gebl33kteAmandel"
+  loginButtonText="Inloggen"
+  stayLoggedLabel="Blijf ingelogd"
+  stayLoggedDurationDescription="voor 2 weken"
+  forgottenLink="Vergeten wachtwoord?"
+  signupLink="Wilt u zich aanmelden voor een account?"
+  emailLabel="Uw email"
+  emailPlaceholder="bartvv@muziek.nl"
+  forgottenButtonText="Wachtwoord reset"
+  signupButtonText="Inschrijven"
+/>
+```
+
 ## todo tasks
 
 - Add onChange to checkbox stayLogged so it updates the state.
 - Create a separate checkbox component.
+- After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
 - Add Jest unit tests.
+- Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
+- Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
 - Move all components of Login into separate repositories.
 - Disable submit buttons until for is valid.
 - Prevent double clicking on submit button based on Axios async process.
 - Display loading animation while Axios async process is ongoing.
 - Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
-
 
 ## Available Scripts
 
@@ -57,6 +85,12 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Bootstrap note
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+
+When checking out this repository, there is no need to bootstrap it again, this was a one-off operation with the command `npx create-react-app react-login`
 
 ## Learn More
 
