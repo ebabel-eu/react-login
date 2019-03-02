@@ -9,6 +9,18 @@ When checking out this repository, there is no need to bootstrap it again, this 
 npm install
 ```
 
+## todo tasks
+
+- Add onChange to checkbox stayLogged so it updates the state.
+- Create a separate checkbox component.
+- Add Jest unit tests.
+- Move all components of Login into separate repositories.
+- Disable submit buttons until for is valid.
+- Prevent double clicking on submit button based on Axios async process.
+- Display loading animation while Axios async process is ongoing.
+- Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -52,37 +64,9 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-
-## todo
-
-- Add onChange to checkbox stayLogged so it updates the state.
-- Create a separate checkbox component.
-- Add Jest unit tests.
-- Move all components of Login into separate repositories.
-- Disable submit buttons until for is valid.
-- Prevent double clicking on submit button based on Axios async process.
-- Display loading animation while Axios async process is ongoing.
+- [Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [Analyzing the Bundle Size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [Deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [`npm run build` fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
