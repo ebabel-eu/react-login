@@ -83,3 +83,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 - Create a separate checkbox component.
 - Add Jest unit tests.
 - Move all components of Login into separate repositories.
+- Disable submit buttons until for is valid.
+- Prevent double clicking on submit button based on Axios async process.
+- Display loading animation while Axios async process is ongoing.
