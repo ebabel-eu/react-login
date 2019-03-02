@@ -1,9 +1,10 @@
 import React from 'react';
-import './PasswordInput.css';
 
 class PasswordInput extends React.Component {
   handleChange(e) {
-    this.props.onValueChange(e.target.value);
+    if (typeof this.props.onValueChange === 'function') {
+      this.props.onValueChange(e.target.value);
+    }
   }
 
   render() {
@@ -19,5 +20,10 @@ class PasswordInput extends React.Component {
     );
   }
 }
+
+PasswordInput.defaultProps = {
+  label: 'Password',
+  placeholder: 'Blanch3dalm0nd',
+};
 
 export default PasswordInput;

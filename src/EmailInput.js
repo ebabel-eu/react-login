@@ -1,9 +1,10 @@
 import React from 'react';
-import './EmailInput.css';
 
 class EmailInput extends React.Component {
   handleChange(e) {
-    this.props.onValueChange(e.target.value);
+    if (typeof this.props.onValueChange === 'function') {
+      this.props.onValueChange(e.target.value);
+    }
   }
 
   render() {
@@ -19,5 +20,10 @@ class EmailInput extends React.Component {
     );
   }
 }
+
+EmailInput.defaultProps = {
+  label: 'E-mail',
+  placeholder: 'john.smith@company.eu',
+};
 
 export default EmailInput;

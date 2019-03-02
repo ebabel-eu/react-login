@@ -4,6 +4,7 @@ import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
 import SubmitButton from './SubmitButton';
+import Checkbox from './Checkbox';
 import './Login.css';
 
 class Login extends React.Component {
@@ -71,9 +72,13 @@ class Login extends React.Component {
     this.setState({ email: value });
   }
 
+  handleStayLoggedChange(value) {
+    this.setState({ stayLogged: value });
+  }
+
   render() {
     return (
-      <div>
+      <div className="login">
         {this.state.displayLogin ? (
         <form id="login" onSubmit={(e) => this.handleLogin(e)}>
           <TextInput
@@ -92,9 +97,9 @@ class Login extends React.Component {
 
           <SubmitButton label={this.props.loginButtonText} />
 
-          <label>
-            <input type="checkbox" defaultChecked={this.state.stayLogged} /> {this.props.stayLoggedLabel} {this.props.stayLoggedDurationDescription}
-          </label>
+          <Checkbox
+            label={`${this.props.stayLoggedLabel} ${this.props.stayLoggedDurationDescription}`}
+            onValueChange={(value) => this.handleStayLoggedChange(value)} />
 
           <p>
             <a href="#forgotten" onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a>
@@ -155,11 +160,7 @@ Login.defaultProps = {
   email: '',
   stayLogged: false,
   usernameLabel: 'Username',
-  passwordLabel: 'Password',
-  emailLabel: 'E-mail',
   usernamePlaceholder: 'johnsmith or john.smith@company.eu',
-  passwordPlaceholder: 'Blanch3dalm0nd',
-  emailPlaceholder: 'john.smith@company.eu',
   stayLoggedDuration: 14,
   stayLoggedUnit: 'days',
   stayLoggedLabel: 'Stay logged-in',

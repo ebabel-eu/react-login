@@ -1,9 +1,10 @@
 import React from 'react';
-import './TextInput.css';
 
 class TextInput extends React.Component {
   handleChange(e) {
-    this.props.onValueChange(e.target.value);
+    if (typeof this.props.onValueChange === 'function') {
+      this.props.onValueChange(e.target.value);
+    }
   }
 
   render() {
