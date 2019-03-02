@@ -1,6 +1,13 @@
 # react-login
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), i.e. the command `npx create-react-app react-login`
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+
+When checking out this repository, there is no need to bootstrap it again, this was a one-off operation with the command `npx create-react-app react-login`
+
+## Install
+```
+npm install
+```
 
 ## Available Scripts
 

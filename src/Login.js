@@ -92,10 +92,12 @@ class Login extends React.Component {
         <form id="login" onSubmit={(e) => this.handleLogin(e)}>
           <TextInput label={this.state.usernameLabel}
             value={this.state.username} autocomplete="username"
+            required={true}
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <PasswordInput label={this.state.passwordLabel}
             value={this.state.password} autocomplete="password"
+            required={true}
             onValueChange={(value) => this.handlePasswordChange(value)} />
 
           <SubmitButton label="Login" />
@@ -118,6 +120,7 @@ class Login extends React.Component {
         <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)}>
           <TextInput label={this.state.usernameLabel}
             value={this.state.username} autocomplete="username"
+            required={true}
             onValueChange={(value) => this.handleUsernameChange(value)} />
 
           <SubmitButton label="Reset your password" />
@@ -136,6 +139,7 @@ class Login extends React.Component {
 
           <EmailInput label={this.state.emailLabel}
             value={this.state.email} autocomplete="email"
+            required={true}
             onValueChange={(value) => this.handleEmailChange(value)} />
 
           <SubmitButton label="Signup" />
