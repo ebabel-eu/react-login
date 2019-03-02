@@ -3,6 +3,10 @@
   margin: 1em auto;
 }
 
+.login .hidden {
+  display: none;
+}
+
 .login label,
 .login label span {
   display: block;
