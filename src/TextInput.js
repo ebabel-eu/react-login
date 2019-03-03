@@ -11,8 +11,10 @@ class TextInput extends React.Component {
     return (
       <label>
         <span>{this.props.label}</span>
-        <input type="text" value={this.props.value}
-          autoComplete={this.props.autocomplete}
+        <input type="text"
+          value={this.props.value}
+          autoComplete={this.props.autoComplete}
+          name={this.props.name}
           required={this.props.required}
           placeholder={this.props.placeholder}
           onChange={(e) => this.handleChange(e)} />
