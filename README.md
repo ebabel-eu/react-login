@@ -37,7 +37,7 @@ import Login from './Login';
 
 ## todo tasks
 
-- Disable submit buttons until form is valid.
+- The checkbox state is not maintained or not reflected when switching to another screen and back to login screen.
 - Prevent double clicking on submit button based on Axios async process.
 - Display loading animation while Axios async process is ongoing.
 - After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
