@@ -25,10 +25,6 @@ class Login extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.checkValidity('login');
-  }
-
   handleLogin(e) {
     e.preventDefault();
 
@@ -58,18 +54,46 @@ class Login extends React.Component {
     this.switchTo(e, 'login');
   }
 
-  switchTo(e, target) {
+  switchTo(e, formId) {
     e.preventDefault();
     this.setState({
-      displayLogin: target === 'login',
-      displayForgotten: target === 'forgotten',
-      displaySignup: target === 'signup',
+      displayLogin: formId === 'login',
+      displayForgotten: formId === 'forgotten',
+      displaySignup: formId === 'signup',
     });
-    this.checkValidity(target);
+
+    const switchTimeoutId = window.setTimeout(() => {
+      this.checkValidity(formId);
+    }, 300);
+
+    this.setState({
+      switchTimeoutId,
+    });
+  }
+
+  componentDidMount() {
+    const mountTimeoutId = window.setTimeout(() => {
+      this.checkValidity('login');
+    }, 300);
+
+    this.setState({
+      mountTimeoutId,
+    });
+  }
+
+  componentWillUnmount() {
+    window.clearTimeout(this.state.switchTimeoutId);
+    window.clearTimeout(this.state.mountTimeoutId);
   }
 
   checkValidity(formId) {
-    const isValid = (document.getElementById(formId) && document.getElementById(formId).checkValidity()) || false;
+    const form = document.getElementById(formId);
+
+    if (!form) {
+      return;
+    }
+
+    const isValid = form.checkValidity();
 
     switch (formId) {
       case 'login':
@@ -109,22 +133,24 @@ class Login extends React.Component {
     return (
       <div className="login">
         {this.state.displayLogin ? (
-        <form id="login" autoComplete="off" onSubmit={(e) => this.handleLogin(e)} onChange={() => this.checkValidity('login')}>
-          <input autoComplete="false" name="hidden" type="text" className="hidden" />
-
+        <form id="login" onSubmit={(e) => this.handleLogin(e)} onChange={() => this.checkValidity('login')}>
           <TextInput
-            label={this.props.usernameLabel}
             value={this.state.username}
+            autoComplete="username"
+            name="username"
             required
             placeholder={this.props.usernamePlaceholder}
-            onValueChange={(value) => this.handleUsernameChange(value, 'login')} />
+            onValueChange={(value) => this.handleUsernameChange(value, 'login')}
+            label={this.props.usernameLabel} />
 
           <PasswordInput
-            label={this.props.passwordLabel}
             value={this.state.password}
+            autoComplete="password"
+            name="password"
             required
             placeholder={this.props.passwordPlaceholder}
-            onValueChange={(value) => this.handlePasswordChange(value, 'login')} />
+            onValueChange={(value) => this.handlePasswordChange(value, 'login')}
+            label={this.props.passwordLabel} />
 
           <SubmitButton disabled={!this.state.validLoginForm} label={this.props.loginButtonText} />
 
@@ -143,43 +169,47 @@ class Login extends React.Component {
         ) : null}
 
         {this.state.displayForgotten ? (
-        <form id="forgotten" autoComplete="off" onSubmit={(e) => this.handleForgotten(e)} onChange={() => this.checkValidity('forgotten')}>
-          <input autoComplete="false" name="hidden" type="text" className="hidden" />
-
+        <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)} onChange={() => this.checkValidity('forgotten')}>
           <EmailInput
-            label={this.props.emailLabel}
-            value={this.state.email} autoComplete="off"
+            value={this.state.email}
+            autoComplete="email"
+            name="email"
             required
             placeholder={this.props.emailPlaceholder}
-            onValueChange={(value) => this.handleEmailChange(value, 'forgotten')} />
+            onValueChange={(value) => this.handleEmailChange(value, 'forgotten')}
+            label={this.props.emailLabel} />
 
           <SubmitButton disabled={!this.state.validForgottenForm} label={this.props.forgottenButtonText} />
         </form>
         ) : null}
 
         {this.state.displaySignup ? (
-        <form id="signup" autoComplete="off" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}>
-          <input autoComplete="false" name="hidden" type="text" className="hidden" />
-
+        <form id="signup" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}>
           <TextInput
-            label={this.props.usernameLabel}
-            value={this.state.username} autoComplete="off"
+            value={this.state.username}
+            autoComplete="username"
+            name="username"
             required
             placeholder={this.props.usernamePlaceholder}
-            onValueChange={(value) => this.handleUsernameChange(value, 'signup')} />
+            onValueChange={(value) => this.handleUsernameChange(value, 'signup')}
+            label={this.props.usernameLabel} />
 
           <PasswordInput
-            label={this.props.passwordLabel}
-            value={this.state.password} autoComplete="off"
+            value={this.state.password}
+            autoComplete="new-password"
+            name="new-password"
             required
             placeholder={this.props.passwordPlaceholder}
-            onValueChange={(value) => this.handlePasswordChange(value, 'signup')} />
+            onValueChange={(value) => this.handlePasswordChange(value, 'signup')}
+            label={this.props.passwordLabel} />
 
           <EmailInput
-            label={this.props.emailLabel}
-            value={this.state.email} autoComplete="email"
+            value={this.state.email}
+            autoComplete="email"
+            name="email"
             placeholder={this.props.emailPlaceholder}
-            onValueChange={(value) => this.handleEmailChange(value, 'signup')} />
+            onValueChange={(value) => this.handleEmailChange(value, 'signup')}
+            label={this.props.emailLabel} />
 
           <SubmitButton disabled={!this.state.validSignupForm} label={this.props.signupButtonText} />
         </form>
