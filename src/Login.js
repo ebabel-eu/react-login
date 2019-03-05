@@ -7,6 +7,7 @@ import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
 import SubmitButton from './SubmitButton';
 import Checkbox from './Checkbox';
+import spinner from './spinner.svg';
 import './Login.css';
 
 class Login extends React.Component {
@@ -21,6 +22,7 @@ class Login extends React.Component {
       displayLogin: props.displayLogin,
       displayForgotten: props.displayForgotten,
       displaySignup: props.displaySignup,
+      displayLoading: props.displayLoading,
       validLoginForm: props.validLoginForm,
       validForgottenForm: props.validForgottenForm,
       validSignupForm: props.validSignupForm,
@@ -42,15 +44,16 @@ class Login extends React.Component {
       payload.stayLoggedUnit = this.props.stayLoggedUnit;
     }
 
-    // todo: make axios url a property with a default endpoint, possible an AWS Lambda.
-    // see https://aws.amazon.com/getting-started/projects/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/module-3/
-    // and https://aws.amazon.com/getting-started/projects/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/
-    axios.post('/login', payload)
+    this.switchTo(e, 'loading');
+
+    axios.post(this.props.loginEndpoint, payload)
       .then((response) => {
-        console.log(response);
+        const successfulEvent = new window.CustomEvent('login-successful', { detail: { response } });
+        window.dispatchEvent(successfulEvent);
       })
       .catch((error) => {
         console.error(error);
+        // todo: switchTo an error screen to show the error and offer a link to login, reset password, or signup.
       });
   }
 
@@ -66,11 +69,17 @@ class Login extends React.Component {
 
   switchTo(e, formId) {
     e.preventDefault();
+
     this.setState({
       displayLogin: formId === 'login',
       displayForgotten: formId === 'forgotten',
       displaySignup: formId === 'signup',
+      displayLoading: formId === 'loading',
     });
+    
+    if (formId === 'loading' || formId === 'successful') {
+      return;
+    }
 
     const switchTimeoutId = window.setTimeout(() => {
       this.checkValidity(formId);
@@ -194,6 +203,15 @@ class Login extends React.Component {
         </form>
         ) : null}
 
+        {this.state.displayLoading ? (
+        <div id="loading">
+          <p className="login-center">
+            <img src={spinner} className="login-spinner" alt="spinner" />
+          </p>
+          <p className="login-center">{this.props.pleaseWait}</p>
+        </div>
+        ) : null}
+
         {this.state.displaySignup ? (
         <form id="signup" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}>
           <TextInput
@@ -246,12 +264,15 @@ Login.defaultProps = {
   displayLogin: true,
   displayForgotten: false,
   displaySignup: false,
+  displayLoading: false,
   loginButtonText: 'Login',
   forgottenButtonText: 'Reset your password',
   signupButtonText: 'Signup',
   validLoginForm: false,
   validForgottenForm: false,
   validSignupForm: false,
+  loginEndpoint: 'https://jsonplaceholder.typicode.com/posts',
+  pleaseWait: 'Please wait...',
 };
 
 Login.propTypes = {
@@ -277,9 +298,12 @@ Login.propTypes = {
   displayLogin: PropTypes.bool,
   displayForgotten: PropTypes.bool,
   displaySignup: PropTypes.bool,
+  displayLoading: PropTypes.bool,
   validLoginForm: PropTypes.bool,
   validForgottenForm: PropTypes.bool,
   validSignupForm: PropTypes.bool,
+  loginEndpoint: PropTypes.string,
+  pleaseWait: PropTypes.string,
 };
 
 export default Login;
