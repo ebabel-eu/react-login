@@ -37,9 +37,9 @@ import Login from './Login';
 
 ## todo tasks
 
-- In Login component, check if the values of the input fields are there in case of an AutoFill when the button state is being changed. If so, that could be a better solution than using the DOM directly to evaluate validity, although it woul mean handling all the validation rules in custom code managed by React.
-- Prevent double clicking on submit button based on Axios async process.
+- Add Axios to login screen.
 - Display loading animation while Axios async process is ongoing.
+- Prevent double clicking on submit button based on Axios async process.
 - After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
 - Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
