@@ -25,7 +25,7 @@
 
 .login-spinner {
   animation: login-spin infinite 20s linear;
-  height: 20vmin;
+  height: 40vmin;
   pointer-events: none;
 }
 
@@ -36,4 +36,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1.login-error {
+  font-size: 1.5em;
+}
+
+.login-error {
+  color: #d80b0b;
 }

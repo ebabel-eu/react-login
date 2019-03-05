@@ -23,9 +23,11 @@ class Login extends React.Component {
       displayForgotten: props.displayForgotten,
       displaySignup: props.displaySignup,
       displayLoading: props.displayLoading,
+      displayError: props.displayError,
       validLoginForm: props.validLoginForm,
       validForgottenForm: props.validForgottenForm,
       validSignupForm: props.validSignupForm,
+      error: props.error,
     };
   }
 
@@ -52,8 +54,8 @@ class Login extends React.Component {
         window.dispatchEvent(successfulEvent);
       })
       .catch((error) => {
-        console.error(error);
-        // todo: switchTo an error screen to show the error and offer a link to login, reset password, or signup.
+        this.setState({ error: error.message });
+        this.switchTo(e, 'error');
       });
   }
 
@@ -68,18 +70,19 @@ class Login extends React.Component {
   }
 
   switchTo(e, formId) {
-    e.preventDefault();
-
     this.setState({
       displayLogin: formId === 'login',
       displayForgotten: formId === 'forgotten',
       displaySignup: formId === 'signup',
       displayLoading: formId === 'loading',
+      displayError: formId === 'error',
     });
     
-    if (formId === 'loading' || formId === 'successful') {
+    if (formId === 'loading' || formId === 'error') {
       return;
     }
+
+    e.preventDefault();
 
     const switchTimeoutId = window.setTimeout(() => {
       this.checkValidity(formId);
@@ -211,6 +214,13 @@ class Login extends React.Component {
           <p className="login-center">{this.props.pleaseWait}</p>
         </div>
         ) : null}
+        
+        {this.state.displayError ? (
+        <div id="error">
+          <h1 className="login-error">Error</h1>
+          <p className="login-error">{this.state.error}</p>
+        </div>
+        ) : null}
 
         {this.state.displaySignup ? (
         <form id="signup" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}>
@@ -265,6 +275,7 @@ Login.defaultProps = {
   displayForgotten: false,
   displaySignup: false,
   displayLoading: false,
+  displayError: false,
   loginButtonText: 'Login',
   forgottenButtonText: 'Reset your password',
   signupButtonText: 'Signup',
@@ -273,6 +284,7 @@ Login.defaultProps = {
   validSignupForm: false,
   loginEndpoint: 'https://jsonplaceholder.typicode.com/posts',
   pleaseWait: 'Please wait...',
+  error: null,
 };
 
 Login.propTypes = {
@@ -299,11 +311,13 @@ Login.propTypes = {
   displayForgotten: PropTypes.bool,
   displaySignup: PropTypes.bool,
   displayLoading: PropTypes.bool,
+  displayError: PropTypes.bool,
   validLoginForm: PropTypes.bool,
   validForgottenForm: PropTypes.bool,
   validSignupForm: PropTypes.bool,
   loginEndpoint: PropTypes.string,
   pleaseWait: PropTypes.string,
+  error: PropTypes.string,
 };
 
 export default Login;
