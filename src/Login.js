@@ -43,7 +43,8 @@ class Login extends React.Component {
     }
 
     // todo: make axios url a property with a default endpoint, possible an AWS Lambda.
-    // see https://aws.amazon.com/getting-started/projects/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/
+    // see https://aws.amazon.com/getting-started/projects/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/module-3/
+    // and https://aws.amazon.com/getting-started/projects/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/
     axios.post('/login', payload)
       .then((response) => {
         console.log(response);
