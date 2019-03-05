@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class PasswordInput extends React.Component {
   handleChange(e) {
@@ -26,6 +27,16 @@ class PasswordInput extends React.Component {
 PasswordInput.defaultProps = {
   label: 'Password',
   placeholder: 'Blanch3dalm0nd',
+};
+
+PasswordInput.propTypes = {
+  onValueChange: PropTypes.func,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  autoComplete: PropTypes.string,
+  name: PropTypes.string,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default PasswordInput;

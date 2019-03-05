@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class TextInput extends React.Component {
   handleChange(e) {
@@ -22,5 +23,20 @@ class TextInput extends React.Component {
     );
   }
 }
+
+TextInput.defaultProps = {
+  label: 'Full name',
+  placeholder: 'John Smith',
+};
+
+TextInput.propTypes = {
+  onValueChange: PropTypes.func,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  autoComplete: PropTypes.string,
+  name: PropTypes.string,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
+};
 
 export default TextInput;

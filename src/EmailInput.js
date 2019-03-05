@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class EmailInput extends React.Component {
   handleChange(e) {
@@ -26,6 +27,16 @@ class EmailInput extends React.Component {
 EmailInput.defaultProps = {
   label: 'E-mail',
   placeholder: 'john.smith@company.eu',
+};
+
+EmailInput.propTypes = {
+  onValueChange: PropTypes.func,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  autoComplete: PropTypes.string,
+  name: PropTypes.string,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default EmailInput;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
@@ -242,6 +243,34 @@ Login.defaultProps = {
   validLoginForm: false,
   validForgottenForm: false,
   validSignupForm: false,
+};
+
+Login.propTypes = {
+  username: PropTypes.string,
+  usernamePlaceholder: PropTypes.string,
+  usernameLabel: PropTypes.string,
+  password: PropTypes.string,
+  passwordPlaceholder: PropTypes.string,
+  passwordLabel: PropTypes.string,
+  email: PropTypes.string,
+  emailPlaceholder: PropTypes.string,
+  emailLabel: PropTypes.string,
+  stayLogged: PropTypes.bool,
+  stayLoggedDuration: PropTypes.number,
+  stayLoggedUnit: PropTypes.string,
+  stayLoggedLabel: PropTypes.string,
+  stayLoggedDurationDescription: PropTypes.string,
+  loginButtonText: PropTypes.string,
+  forgottenLink: PropTypes.string,
+  signupLink: PropTypes.string,
+  forgottenButtonText: PropTypes.string,
+  signupButtonText: PropTypes.string,
+  displayLogin: PropTypes.bool,
+  displayForgotten: PropTypes.bool,
+  displaySignup: PropTypes.bool,
+  validLoginForm: PropTypes.bool,
+  validForgottenForm: PropTypes.bool,
+  validSignupForm: PropTypes.bool,
 };
 
 export default Login;

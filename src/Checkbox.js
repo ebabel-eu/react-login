@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Checkbox extends React.Component {
   handleChange(e) {
@@ -22,6 +23,12 @@ class Checkbox extends React.Component {
 Checkbox.defaultProps = {
   checked: false,
   label: 'I agree with the terms and conditions.',
+};
+
+Checkbox.propTypes = {
+  onValueChange: PropTypes.func,
+  checked: PropTypes.bool,
+  label: PropTypes.string,
 };
 
 export default Checkbox;
