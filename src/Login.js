@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
@@ -41,8 +42,15 @@ class Login extends React.Component {
       payload.stayLoggedUnit = this.props.stayLoggedUnit;
     }
 
-    // todo: use Axios to submit this login payload to a given endpoint.
-    console.log(payload);
+    // todo: make axios url a property with a default endpoint, possible an AWS Lambda.
+    // see https://aws.amazon.com/getting-started/projects/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/
+    axios.post('/login', payload)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   handleForgotten(e) {
