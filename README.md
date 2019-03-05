@@ -43,9 +43,7 @@ When the login is successful, a custom event `login-successful` will be dispatch
 Any other code outside the scope of this component can listen for that custom event and receive the response data.
 
 ## todo tasks
-- Add Axios to login screen.
-- Prefix all css class by the name of the component, like Login-logo.
-- Display loading animation while Axios async process is ongoing.
+- Add Axios to forgotten and signup screens.
 - Prevent double clicking on submit button based on Axios async process.
 - After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
