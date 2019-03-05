@@ -81,6 +81,18 @@ class Login extends React.Component {
       mountTimeoutId,
     });
   }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    // If the next state of the login form is about to be set to false, verify
+    // this is justified by checking if the username and password are indeed invalid,
+    // which might catch the values inserted by Chrome AutoFill.
+    if (nextState.validLoginForm === false) {
+      console.log(this.state.username, this.state.password);
+    }
+
+    // Default is to update if no exception has been caught.
+    return true;
+  }
 
   componentWillUnmount() {
     window.clearTimeout(this.state.switchTimeoutId);
