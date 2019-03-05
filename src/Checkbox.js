@@ -11,7 +11,7 @@ class Checkbox extends React.Component {
     return (
       <label>
         <input type="checkbox"
-          defaultChecked={this.props.defaultChecked}
+          checked={this.props.checked}
           onChange={(e) => this.handleChange(e)}
         /> {this.props.label}
       </label>
@@ -20,7 +20,7 @@ class Checkbox extends React.Component {
 }
 
 Checkbox.defaultProps = {
-  defaultChecked: false,
+  checked: false,
   label: 'I agree with the terms and conditions.',
 };
 

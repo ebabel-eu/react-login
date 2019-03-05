@@ -155,6 +155,7 @@ class Login extends React.Component {
           <SubmitButton disabled={!this.state.validLoginForm} label={this.props.loginButtonText} />
 
           <Checkbox
+            checked={this.state.stayLogged}
             label={`${this.props.stayLoggedLabel} ${this.props.stayLoggedDurationDescription}`}
             onValueChange={(value) => this.handleStayLoggedChange(value, 'login')} />
 

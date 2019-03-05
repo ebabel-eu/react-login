@@ -39,7 +39,6 @@ import Login from './Login';
 
 - Add propTypes in each component.
 - In Login component, check if the values of the input fields are there in case of an AutoFill when the button state is being changed. If so, that could be a better solution than using the DOM directly to evaluate validity, although it woul mean handling all the validation rules in custom code managed by React.
-- The checkbox state is not maintained or not reflected when switching to another screen and back to login screen.
 - Prevent double clicking on submit button based on Axios async process.
 - Display loading animation while Axios async process is ongoing.
 - After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.

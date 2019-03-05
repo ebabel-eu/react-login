@@ -12,7 +12,7 @@ describe('Checkbox', () => {
 
   it('is not checked by default', () => {
     const checkbox = <Checkbox />;
-    expect(checkbox.props.defaultChecked).toBe(false);
+    expect(checkbox.props.checked).toBe(false);
   });
 
   it('has a label property', () => {
