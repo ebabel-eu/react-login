@@ -176,7 +176,8 @@ class Login extends React.Component {
     return (
       <div className="login">
         {this.state.displayLogin ? (
-        <form id="login" onSubmit={(e) => this.handleLogin(e)} onChange={() => this.checkValidity('login')}>
+        <form id="login" onSubmit={(e) => this.handleLogin(e)} onChange={() => this.checkValidity('login')}
+          action={`#${this.props.loginHash}`} method="POST">
           <TextInput
             value={this.state.username}
             autoComplete="username"
@@ -213,7 +214,8 @@ class Login extends React.Component {
         ) : null}
 
         {this.state.displayForgotten ? (
-        <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)} onChange={() => this.checkValidity('forgotten')}>
+        <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)} onChange={() => this.checkValidity('forgotten')}
+          action={`#${this.props.forgottenHash}`} method="POST">
           <EmailInput
             value={this.state.email}
             autoComplete="email"
@@ -254,7 +256,8 @@ class Login extends React.Component {
         ) : null}
 
         {this.state.displaySignup ? (
-        <form id="signup" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}>
+        <form id="signup" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}
+          action={`#${this.props.signupHash}`} method="POST">
           <TextInput
             value={this.state.username}
             autoComplete="username"
