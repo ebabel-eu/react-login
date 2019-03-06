@@ -50,8 +50,10 @@ class Login extends React.Component {
 
     axios.post(this.props.loginEndpoint, payload)
       .then((response) => {
-        const successfulEvent = new window.CustomEvent('login-successful', { detail: { response } });
-        window.dispatchEvent(successfulEvent);
+        window.dispatchEvent(new window.CustomEvent(
+          'login-successful',
+          { detail: { response } }
+        ));
       })
       .catch((error) => {
         this.setState({ error: error.message });
@@ -61,7 +63,24 @@ class Login extends React.Component {
 
   handleForgotten(e) {
     e.preventDefault();
-    this.switchTo(e, 'login');
+
+    const payload = {
+      email: this.state.email,
+    };
+
+    this.switchTo(e, 'loading');
+
+    axios.post(this.props.forgottenEndpoint, payload)
+      .then((response) => {
+        window.dispatchEvent(new window.CustomEvent(
+          'forgotten-successful',
+          { detail: { response } }
+        ));
+      })
+      .catch((error) => {
+        this.setState({ error: error.message });
+        this.switchTo(e, 'error');
+      });
   }
 
   handleSignup(e) {
@@ -184,13 +203,10 @@ class Login extends React.Component {
             label={`${this.props.stayLoggedLabel} ${this.props.stayLoggedDurationDescription}`}
             onValueChange={(value) => this.handleStayLoggedChange(value, 'login')} />
 
-          <p>
-            <a href="#forgotten" onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a>
-          </p>
-
-          <p>
-            <a href="#signup" onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a>
-          </p>
+          <ul>
+            <li><a href="#forgotten" onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
+            <li><a href="#signup" onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
+          </ul>
         </form>
         ) : null}
 
@@ -225,6 +241,13 @@ class Login extends React.Component {
         <div id="error">
           <h1 className="login-error">Error</h1>
           <p className="login-error">{this.state.error}</p>
+
+          <h2 className="login-error">{this.props.errorHelpText}</h2>
+          <ul className="login-error">
+            <li><a href="#forgotten" onClick={(e) => this.switchTo(e, 'login')}>{this.props.loginLink}</a></li>
+            <li><a href="#forgotten" onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
+            <li><a href="#signup" onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
+          </ul>
         </div>
         ) : null}
 
@@ -252,9 +275,12 @@ class Login extends React.Component {
             value={this.state.email}
             autoComplete="email"
             name="email"
+            required
             placeholder={this.props.emailPlaceholder}
             onValueChange={(value) => this.handleEmailChange(value, 'signup')}
             label={this.props.emailLabel} />
+
+          <p>{this.props.emailPolicy}</p>
 
           <SubmitButton
             name="signup-button"
@@ -278,6 +304,7 @@ Login.defaultProps = {
   stayLoggedUnit: 'days',
   stayLoggedLabel: 'Stay logged-in',
   stayLoggedDurationDescription: 'for 2 weeks',
+  loginLink: "Login",
   forgottenLink: 'Forgotten password?',
   signupLink: 'Need to signup for an account?',
   displayLogin: true,
@@ -292,8 +319,11 @@ Login.defaultProps = {
   validForgottenForm: false,
   validSignupForm: false,
   loginEndpoint: 'https://jsonplaceholder.typicode.com/posts',
+  forgottenEndpoint: 'https://jsonplaceholder.typicode.com/posts',
   pleaseWait: 'Please wait...',
   error: null,
+  emailPolicy: 'Your e-mail is required because you might need it to reset your password in case you forget it. Your e-mail will not be used for any other purpose.',
+  errorHelpText: 'What would you like to do next?',
 };
 
 Login.propTypes = {
@@ -312,6 +342,7 @@ Login.propTypes = {
   stayLoggedLabel: PropTypes.string,
   stayLoggedDurationDescription: PropTypes.string,
   loginButtonText: PropTypes.string,
+  loginLink: PropTypes.string,
   forgottenLink: PropTypes.string,
   signupLink: PropTypes.string,
   forgottenButtonText: PropTypes.string,
@@ -325,8 +356,11 @@ Login.propTypes = {
   validForgottenForm: PropTypes.bool,
   validSignupForm: PropTypes.bool,
   loginEndpoint: PropTypes.string,
+  forgottenEndpoint: PropTypes.string,
   pleaseWait: PropTypes.string,
   error: PropTypes.string,
+  emailPolicy: PropTypes.string,
+  errorHelpText: PropTypes.string,
 };
 
 export default Login;

@@ -28,12 +28,16 @@ import Login from './Login';
   loginButtonText="Inloggen"
   stayLoggedLabel="Blijf ingelogd"
   stayLoggedDurationDescription="voor 2 weken"
+  loginLink="Aanmelden"
   forgottenLink="Vergeten wachtwoord?"
   signupLink="Wilt u zich aanmelden voor een account?"
   emailLabel="Uw email"
   emailPlaceholder="bartvv@muziek.nl"
   forgottenButtonText="Wachtwoord reset"
   signupButtonText="Inschrijven"
+  pleaseWait="Wachten, alstublieft..."
+  emailPolicy="Uw e-mail is nodig in de geval uw vergeet uw wachtwoord en wil het reset. Uw e-mail word niet voor iets ander gebruikt."
+  errorHelpText="Wat wilt u anders doen?"
 />
 ```
 
