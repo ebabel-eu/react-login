@@ -205,11 +205,6 @@ class Login extends React.Component {
             label={`${this.props.stayLoggedLabel} ${this.props.stayLoggedDurationDescription}`}
             onValueChange={(value) => this.handleStayLoggedChange(value, 'login')} />
 
-
-: 'login',
-  forgottenHash: 'forgotten',
-  signupHash: 'signup',
-
           <ul>
             <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
             <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
