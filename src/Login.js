@@ -90,7 +90,30 @@ class Login extends React.Component {
 
   handleSignup(e) {
     e.preventDefault();
-    this.switchTo(e, 'login');
+
+    const payload = {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+    };
+
+    this.switchTo(e, 'loading');
+
+    axios.post(this.props.signupEndpoint, payload)
+      .then((response) => {
+        window.dispatchEvent(new window.CustomEvent(
+          'signup-successful',
+          { detail: { response } }
+        ));
+
+        if (this.props.afterSignupDisplayLogin) {
+          this.switchTo(e, 'login');
+        }
+      })
+      .catch((error) => {
+        this.setState({ error: error.message });
+        this.switchTo(e, 'error');
+      });
   }
 
   switchTo(e, formId) {
@@ -330,11 +353,13 @@ Login.defaultProps = {
   validSignupForm: false,
   loginEndpoint: 'https://jsonplaceholder.typicode.com/posts',
   forgottenEndpoint: 'https://jsonplaceholder.typicode.com/posts',
+  signupEndpoint: 'https://jsonplaceholder.typicode.com/posts',
   pleaseWait: 'Please wait...',
   error: null,
   emailPolicy: 'Your e-mail is required because you might need it to reset your password in case you forget it. Your e-mail will not be used for any other purpose.',
   errorHelpText: 'What would you like to do next?',
   afterResetDisplayLogin: false,
+  afterSignupDisplayLogin: false,
   errorTextColor: '#d80b0b',
   errorHeaderFontSize: '1.5em',
   errorSubHeaderFontSize: '1.25em',
@@ -374,11 +399,13 @@ Login.propTypes = {
   validSignupForm: PropTypes.bool,
   loginEndpoint: PropTypes.string,
   forgottenEndpoint: PropTypes.string,
+  signupEndpoint: PropTypes.string,
   pleaseWait: PropTypes.string,
   error: PropTypes.string,
   emailPolicy: PropTypes.string,
   errorHelpText: PropTypes.string,
   afterResetDisplayLogin: PropTypes.bool,
+  afterSignupDisplayLogin: PropTypes.bool,
   errorTextColor: PropTypes.string,
   errorHeaderFontSize: PropTypes.string,
   errorSubHeaderFontSize: PropTypes.string,

@@ -30,6 +30,7 @@ ReactDOM.render(<Login
   emailPolicy="Uw e-mail is nodig in de geval uw vergeet uw wachtwoord en wil het reset. Uw e-mail word niet voor iets ander gebruikt."
   errorHelpText="Wat wilt u anders doen?"
   afterResetDisplayLogin={true}
+  afterSignupDisplayLogin={true}
 />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

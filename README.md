@@ -59,10 +59,19 @@ The detail property of that event contains the response of the web API endpoint 
 
 Any code outside the scope of this login component can listen for that event and decide what do to next.
 
-The property afterResetDisplayLogin is set to false by default. If it is set to true, the event `forgotten-successful` will still be dispatched, but the login screen will be displayed.
+The property afterResetDisplayLogin is set to false by default. If it is set to true, the event `forgotten-successful` will still be dispatched, and the login screen will be displayed.
+
+## Successful signup event
+When the Axios call to the signup endpoint is successful, a custom event `signup-successful` will be dispatched.
+
+The detail property of that event contains the response of the web API endpoint that performed the signup.
+
+Any code outside the scope of this login component can listen for that event and decide what do to next.
+
+The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
 ## todo tasks
-- Add Axios to signup screen.
+- Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
 - Prevent double clicking on submit button based on Axios async process.
 - After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
