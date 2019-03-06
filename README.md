@@ -51,6 +51,7 @@ Any other code outside the scope of this component can listen for that custom ev
 - Move all components of Login into separate repositories.
 - Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
 - Add more Jest unit tests.
+- Make sure the component is offline-friendly in the demo. Not sure the offline setup scope is entirely inside the component or actually the responsibility of the component itself, but if the demo works offline, so should the component.
 
 ## Available Scripts
 
