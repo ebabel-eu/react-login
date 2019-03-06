@@ -252,6 +252,9 @@ class Login extends React.Component {
           forgottenLink={this.props.forgottenLink}
           signupLink={this.props.signupLink}
           switchTo={this.switchTo.bind(this)}
+          errorTextColor={this.props.errorTextColor}
+          errorHeaderFontSize={this.props.errorHeaderFontSize}
+          errorSubHeaderFontSize={this.props.errorSubHeaderFontSize}
         /> : null}
 
         {this.state.displaySignup ? (
@@ -332,7 +335,9 @@ Login.defaultProps = {
   emailPolicy: 'Your e-mail is required because you might need it to reset your password in case you forget it. Your e-mail will not be used for any other purpose.',
   errorHelpText: 'What would you like to do next?',
   afterResetDisplayLogin: false,
-  errorTextColor: '#ff00ff',
+  errorTextColor: '#d80b0b',
+  errorHeaderFontSize: '1.5em',
+  errorSubHeaderFontSize: '1.25em',
 };
 
 Login.propTypes = {
@@ -375,6 +380,8 @@ Login.propTypes = {
   errorHelpText: PropTypes.string,
   afterResetDisplayLogin: PropTypes.bool,
   errorTextColor: PropTypes.string,
+  errorHeaderFontSize: PropTypes.string,
+  errorSubHeaderFontSize: PropTypes.string,
 };
 
 export default Login;

@@ -8,16 +8,19 @@ class ErrorScreen extends React.Component {
 
   render() {
     return (
-      <div className="login-error">
-      <h1>{this.props.error}</h1>
-  
-      {this.props.errorHelpText ? (<h2>{this.props.errorHelpText}</h2>) : null}
-      <ul>
-        <li><a href={`#${this.props.loginHash}`} onClick={(e) => this.handleClick(e, 'login')}>{this.props.loginLink}</a></li>
-        <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.handleClick(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
-        <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.handleClick(e, 'signup')}>{this.props.signupLink}</a></li>
-      </ul>
-    </div>
+      <div style={{ color: this.props.errorTextColor }}>
+        <h1 style={{ fontSize: this.props.errorHeaderFontSize }}>{this.props.error}</h1>
+
+        {this.props.errorHelpText ? (
+          <h2 style={{ fontSize: this.props.errorSubHeaderFontSize }}>{this.props.errorHelpText}</h2>
+        ) : null}
+
+        <ul>
+          <li><a href={`#${this.props.loginHash}`} onClick={(e) => this.handleClick(e, 'login')}>{this.props.loginLink}</a></li>
+          <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.handleClick(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
+          <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.handleClick(e, 'signup')}>{this.props.signupLink}</a></li>
+        </ul>
+      </div>
     );
   }
 }
@@ -36,6 +39,9 @@ ErrorScreen.propTypes = {
   forgottenLink: PropTypes.string,
   signupLink: PropTypes.string,
   switchTo: PropTypes.func,
+  errorTextColor: PropTypes.string,
+  errorHeaderFontSize: PropTypes.string,
+  errorSubHeaderFontSize: PropTypes.string,
 };
 
 export default ErrorScreen;

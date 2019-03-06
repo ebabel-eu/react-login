@@ -63,6 +63,7 @@ The property afterResetDisplayLogin is set to false by default. If it is set to 
 
 ## todo tasks
 - Add Axios to signup screen.
+- Make the Login component style dynamic with properties and delete Login.css
 - Prevent double clicking on submit button based on Axios async process.
 - After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).

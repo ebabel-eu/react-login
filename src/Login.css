@@ -37,15 +37,3 @@
     transform: rotate(360deg);
   }
 }
-
-h1.login-error {
-  font-size: 1.5em;
-}
-
-h2.login-error {
-  font-size: 1.25em;
-}
-
-.login-error {
-  color: #d80b0b;
-}
