@@ -25,12 +25,15 @@ import Login from './Login';
   usernamePlaceholder="bartvanveldhoven"
   passwordLabel="Wachtwoord"
   passwordPlaceholder="Gebl33kteAmandel"
-  loginButtonText="Inloggen"
+  loginButtonText="Aanmelden"
   stayLoggedLabel="Blijf ingelogd"
   stayLoggedDurationDescription="voor 2 weken"
   loginLink="Aanmelden"
   forgottenLink="Vergeten wachtwoord?"
   signupLink="Wilt u zich aanmelden voor een account?"
+  loginHash="aanmelden"
+  forgottenHash="reset-wachtwoord"
+  signupHash="nieuw-account-maken"
   emailLabel="Uw email"
   emailPlaceholder="bartvv@muziek.nl"
   forgottenButtonText="Wachtwoord reset"
@@ -38,13 +41,25 @@ import Login from './Login';
   pleaseWait="Wachten, alstublieft..."
   emailPolicy="Uw e-mail is nodig in de geval uw vergeet uw wachtwoord en wil het reset. Uw e-mail word niet voor iets ander gebruikt."
   errorHelpText="Wat wilt u anders doen?"
+  afterResetDisplayLogin={true}
 />
 ```
 
-## Successful login
-When the login is successful, a custom event `login-successful` will be dispatched. The detail property of that event contains the response of the web API endpoint that performed the login.
+## Successful login event
+When the login is successful, a custom event `login-successful` will be dispatched.
+
+The detail property of that event contains the response of the web API endpoint that performed the login.
 
 Any other code outside the scope of this component can listen for that custom event and receive the response data.
+
+## Successful password reset event
+When the Axios call to the password reset endpoint is successful, a custom event `forgotten-successful` will be dispatched.
+
+The detail property of that event contains the response of the web API endpoint that performed the password reset.
+
+Any code outside the scope of this login component can listen for that event and decide what do to next.
+
+The property afterResetDisplayLogin is set to false by default. If it is set to true, the event `forgotten-successful` will still be dispatched, but the login screen will be displayed.
 
 ## todo tasks
 - Add Axios to forgotten and signup screens.

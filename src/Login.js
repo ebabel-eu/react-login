@@ -76,6 +76,10 @@ class Login extends React.Component {
           'forgotten-successful',
           { detail: { response } }
         ));
+
+        if (this.props.afterResetDisplayLogin) {
+          this.switchTo(e, 'login');
+        }
       })
       .catch((error) => {
         this.setState({ error: error.message });
@@ -100,8 +104,6 @@ class Login extends React.Component {
     if (formId === 'loading' || formId === 'error') {
       return;
     }
-
-    e.preventDefault();
 
     const switchTimeoutId = window.setTimeout(() => {
       this.checkValidity(formId);
@@ -203,9 +205,14 @@ class Login extends React.Component {
             label={`${this.props.stayLoggedLabel} ${this.props.stayLoggedDurationDescription}`}
             onValueChange={(value) => this.handleStayLoggedChange(value, 'login')} />
 
+
+: 'login',
+  forgottenHash: 'forgotten',
+  signupHash: 'signup',
+
           <ul>
-            <li><a href="#forgotten" onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
-            <li><a href="#signup" onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
+            <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
+            <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
           </ul>
         </form>
         ) : null}
@@ -244,10 +251,10 @@ class Login extends React.Component {
 
           <h2 className="login-error">{this.props.errorHelpText}</h2>
           <ul className="login-error">
-            <li><a href="#forgotten" onClick={(e) => this.switchTo(e, 'login')}>{this.props.loginLink}</a></li>
-            <li><a href="#forgotten" onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
-            <li><a href="#signup" onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
-          </ul>
+            <li><a href={`#${this.props.loginHash}`} onClick={(e) => this.switchTo(e, 'login')}>{this.props.loginLink}</a></li>
+            <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
+            <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
+         </ul>
         </div>
         ) : null}
 
@@ -312,6 +319,9 @@ Login.defaultProps = {
   displaySignup: false,
   displayLoading: false,
   displayError: false,
+  loginHash: 'login',
+  forgottenHash: 'forgotten',
+  signupHash: 'signup',
   loginButtonText: 'Login',
   forgottenButtonText: 'Reset your password',
   signupButtonText: 'Signup',
@@ -324,6 +334,7 @@ Login.defaultProps = {
   error: null,
   emailPolicy: 'Your e-mail is required because you might need it to reset your password in case you forget it. Your e-mail will not be used for any other purpose.',
   errorHelpText: 'What would you like to do next?',
+  afterResetDisplayLogin: false,
 };
 
 Login.propTypes = {
@@ -341,6 +352,9 @@ Login.propTypes = {
   stayLoggedUnit: PropTypes.string,
   stayLoggedLabel: PropTypes.string,
   stayLoggedDurationDescription: PropTypes.string,
+  loginHash: PropTypes.string,
+  forgottenHash: PropTypes.string,
+  signupHash: PropTypes.string,
   loginButtonText: PropTypes.string,
   loginLink: PropTypes.string,
   forgottenLink: PropTypes.string,
@@ -361,6 +375,7 @@ Login.propTypes = {
   error: PropTypes.string,
   emailPolicy: PropTypes.string,
   errorHelpText: PropTypes.string,
+  afterResetDisplayLogin: PropTypes.bool,
 };
 
 export default Login;
