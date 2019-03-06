@@ -174,7 +174,10 @@ class Login extends React.Component {
             onValueChange={(value) => this.handlePasswordChange(value, 'login')}
             label={this.props.passwordLabel} />
 
-          <SubmitButton disabled={!this.state.validLoginForm} label={this.props.loginButtonText} />
+          <SubmitButton
+            name="login-button"
+            disabled={!this.state.validLoginForm}
+            label={this.props.loginButtonText} />
 
           <Checkbox
             checked={this.state.stayLogged}
@@ -202,7 +205,10 @@ class Login extends React.Component {
             onValueChange={(value) => this.handleEmailChange(value, 'forgotten')}
             label={this.props.emailLabel} />
 
-          <SubmitButton disabled={!this.state.validForgottenForm} label={this.props.forgottenButtonText} />
+          <SubmitButton
+            name="forgotten-button"
+            disabled={!this.state.validForgottenForm}
+            label={this.props.forgottenButtonText} />
         </form>
         ) : null}
 
@@ -250,7 +256,10 @@ class Login extends React.Component {
             onValueChange={(value) => this.handleEmailChange(value, 'signup')}
             label={this.props.emailLabel} />
 
-          <SubmitButton disabled={!this.state.validSignupForm} label={this.props.signupButtonText} />
+          <SubmitButton
+            name="signup-button"
+            disabled={!this.state.validSignupForm}
+            label={this.props.signupButtonText} />
         </form>
         ) : null}
       </div>
