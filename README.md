@@ -71,12 +71,11 @@ Any code outside the scope of this login component can listen for that event and
 The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
 ## todo tasks
+- Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
 - Prevent double clicking on submit button based on Axios async process.
-- After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
-- Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
 - Move all components of Login into separate repositories.
 - Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
 - Add more Jest unit tests.
