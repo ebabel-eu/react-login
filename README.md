@@ -62,7 +62,7 @@ Any code outside the scope of this login component can listen for that event and
 The property afterResetDisplayLogin is set to false by default. If it is set to true, the event `forgotten-successful` will still be dispatched, but the login screen will be displayed.
 
 ## todo tasks
-- Add Axios to forgotten and signup screens.
+- Add Axios to signup screen.
 - Prevent double clicking on submit button based on Axios async process.
 - After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).

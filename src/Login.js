@@ -7,6 +7,7 @@ import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
 import SubmitButton from './SubmitButton';
 import Checkbox from './Checkbox';
+import ErrorScreen from './ErrorScreen';
 import spinner from './spinner.svg';
 import './Login.css';
 
@@ -240,20 +241,18 @@ class Login extends React.Component {
           <p className="login-center">{this.props.pleaseWait}</p>
         </div>
         ) : null}
-        
-        {this.state.displayError ? (
-        <div id="error">
-          <h1 className="login-error">Error</h1>
-          <p className="login-error">{this.state.error}</p>
 
-          <h2 className="login-error">{this.props.errorHelpText}</h2>
-          <ul className="login-error">
-            <li><a href={`#${this.props.loginHash}`} onClick={(e) => this.switchTo(e, 'login')}>{this.props.loginLink}</a></li>
-            <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
-            <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
-         </ul>
-        </div>
-        ) : null}
+        {this.state.displayError ? <ErrorScreen
+          error={this.state.error}
+          errorHelpText={this.props.errorHelpText}
+          loginHash={this.props.loginHash}
+          forgottenHash={this.props.forgottenHash}
+          signupHash={this.props.signupHash}
+          loginLink={this.props.loginLink}
+          forgottenLink={this.props.forgottenLink}
+          signupLink={this.props.signupLink}
+          switchTo={this.switchTo.bind(this)}
+        /> : null}
 
         {this.state.displaySignup ? (
         <form id="signup" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}
@@ -333,6 +332,7 @@ Login.defaultProps = {
   emailPolicy: 'Your e-mail is required because you might need it to reset your password in case you forget it. Your e-mail will not be used for any other purpose.',
   errorHelpText: 'What would you like to do next?',
   afterResetDisplayLogin: false,
+  errorTextColor: '#ff00ff',
 };
 
 Login.propTypes = {
@@ -374,6 +374,7 @@ Login.propTypes = {
   emailPolicy: PropTypes.string,
   errorHelpText: PropTypes.string,
   afterResetDisplayLogin: PropTypes.bool,
+  errorTextColor: PropTypes.string,
 };
 
 export default Login;
