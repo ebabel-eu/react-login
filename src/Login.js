@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
@@ -10,6 +9,19 @@ import Checkbox from './Checkbox';
 import ErrorScreen from './ErrorScreen';
 import Spinner from './Spinner';
 import './Login.css';
+
+const POST = {
+  method: "POST", // *GET, POST, PUT, DELETE, etc.
+  mode: "cors", // no-cors, cors, *same-origin
+  cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+  credentials: "same-origin", // include, *same-origin, omit
+  headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+  },
+  redirect: "follow", // manual, *follow, error
+  referrer: "no-referrer", // no-referrer, *client
+};
 
 class Login extends React.Component {
   constructor(props) {
@@ -49,7 +61,10 @@ class Login extends React.Component {
 
     this.switchTo(e, 'loading');
 
-    axios.post(this.props.loginEndpoint, payload)
+    fetch(this.props.loginEndpoint, {
+        ...POST,
+        body: payload,
+      })
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'login-successful',
@@ -71,7 +86,10 @@ class Login extends React.Component {
 
     this.switchTo(e, 'loading');
 
-    axios.post(this.props.forgottenEndpoint, payload)
+    fetch(this.props.forgottenEndpoint, {
+        ...POST,
+        body: payload,
+      })
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'forgotten-successful',
@@ -99,7 +117,10 @@ class Login extends React.Component {
 
     this.switchTo(e, 'loading');
 
-    axios.post(this.props.signupEndpoint, payload)
+    fetch(this.props.signupEndpoint, {
+        ...POST,
+        body: payload,
+      })
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'signup-successful',
