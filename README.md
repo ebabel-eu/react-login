@@ -72,7 +72,7 @@ Any code outside the scope of this login component can listen for that event and
 The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
 ## todo tasks
-- Remove Axios and use the native ES6 fetch instead, to reduce the size of the build. is-buffer, a dependency of axios, is especially big. See this article on [Axios vs fetch](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5).
+- Make a small Node express.js API to test the responses. They should be response.json() instead of just response.
 - Make a demo that works on its own, from this repository.
 - Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property).
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.

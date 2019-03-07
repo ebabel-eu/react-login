@@ -1,6 +1,6 @@
 {
   "name": "@thomasamar/react-login",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Reusable generic login, including a password reset and an account signup. It communicates with any backend web services API asynchronolously. The styling is functional but minimal, so that it's easy to customize.",
   "keywords": [
     "react",
