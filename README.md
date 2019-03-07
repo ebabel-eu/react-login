@@ -72,6 +72,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 
 ## todo tasks
 - Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
+- Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
 - Prevent double clicking on submit button based on Axios async process.
