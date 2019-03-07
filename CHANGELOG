@@ -1,4 +1,7 @@
 # Changelog
 
+## v0.2.0
+- Remove Axios and use the native ES6 fetch instead, to reduce the size of the build. is-buffer, a dependency of axios, is especially big. See this article on [Axios vs fetch](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5).
+
 ## v0.1.0
 - First version of the ReactLogin component.

@@ -5,7 +5,7 @@ The styling is functional but minimal, so that it's easy to customize.
 
 ## Install
 ```
-npm install @thomasamar/react-login
+npm install @thomasamar/react-login --save
 ```
 
 ## Usage of the Login component
@@ -71,8 +71,6 @@ Any code outside the scope of this login component can listen for that event and
 The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
 ## todo tasks
-- Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
-- Tidy up package.json by removing as many dependencies as possible. Make sure these are also removed from node_modules locally to test this works.
 - Remove Axios and use the native ES6 fetch instead, to reduce the size of the build. is-buffer, a dependency of axios, is especially big. See this article on [Axios vs fetch](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5).
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
