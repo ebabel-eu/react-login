@@ -42,6 +42,7 @@ import ReactLogin from '@thomasamar/react-login';
   emailPolicy="Uw e-mail is nodig in de geval uw vergeet uw wachtwoord en wil het reset. Uw e-mail word niet voor iets ander gebruikt."
   errorHelpText="Wat wilt u anders doen?"
   afterResetDisplayLogin={true}
+
 />
 ```
 
@@ -72,6 +73,9 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 
 ## todo tasks
 - Remove Axios and use the native ES6 fetch instead, to reduce the size of the build. is-buffer, a dependency of axios, is especially big. See this article on [Axios vs fetch](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5).
+- Make a demo that works on its own, from this repository.
+- Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property).
+- Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
