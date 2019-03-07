@@ -40,6 +40,15 @@
     "webpack": "4.28.3",
     "webpack-cli": "^3.2.3"
   },
+  "files": [
+    "react-login.js",
+    "README.MD",
+    "LICENSE",
+    "CHANGELOG",
+    "src/*",
+    ".babelrc",
+    "package.json"
+  ],
   "browserslist": [
     ">0.2%",
     "not dead",
