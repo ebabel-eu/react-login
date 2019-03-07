@@ -15,7 +15,7 @@
   "license": "GPL-3.0",
   "author": "Thomas Amar <hello@ebabel.eu> (https://ebabel.eu/)",
   "contributors": [],
-  "browser": "src/Login.js",
+  "browser": "react-login.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ebabel-eu/react-login.git"
