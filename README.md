@@ -1,4 +1,4 @@
-# Thomas Amar `<ReactLogin />` component
+# @thomasamar `<ReactLogin />` component
 Reusable generic login, including a password reset and an account signup.
 It communicates with any backend web services API asynchronolously.
 The styling is functional but minimal, so that it's easy to customize.
@@ -10,7 +10,7 @@ npm install @thomasamar/react-login
 
 ## Usage of the Login component
 ```
-import ReactLogin from 'react-login';
+import ReactLogin from '@thomasamar/react-login';
 
 <ReactLogin />
 ```
@@ -18,7 +18,7 @@ import ReactLogin from 'react-login';
 or (all props are optional and have default values)
 
 ```
-import ReactLogin from 'react-login';
+import ReactLogin from '@thomasamar/react-login';
 
 <ReactLogin
   usernameLabel="Gebruikersnaam"
