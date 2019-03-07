@@ -26,8 +26,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.8.3",
-    "react-core": "0.0.0",
-    "react-dev-utils": "^7.0.3",
     "react-dom": "^16.8.3"
   },
   "devDependencies": {
