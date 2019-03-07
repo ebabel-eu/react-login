@@ -1,11 +1,11 @@
-# eBabel `<ReactLogin />` component
+# Thomas Amar `<ReactLogin />` component
 Reusable generic login, including a password reset and an account signup.
 It communicates with any backend web services API asynchronolously.
 The styling is functional but minimal, so that it's easy to customize.
 
 ## Install
 ```
-npm install @ebabel/react-login
+npm install @thomasamar/react-login
 ```
 
 ## Usage of the Login component
