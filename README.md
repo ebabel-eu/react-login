@@ -88,6 +88,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Look into a validation method that doesn't talk to the DOM directly but relies entirely on React.
 - Setup JSDoc to generate documentation.
 - Use webpack to create 2 versions of react-login.js: one that is for importing into ES6 modules, and one that can be used directly as-is in a browser, without any module import.
+- Treeshake react-login.js so it's smaller than 34k and only contains code that's really needed.
 
 ## `npm run build`
 Builds the component, so it can be used in other applications as a front-end node module for browsers.
