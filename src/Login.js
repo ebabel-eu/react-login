@@ -8,7 +8,7 @@ import EmailInput from './EmailInput';
 import SubmitButton from './SubmitButton';
 import Checkbox from './Checkbox';
 import ErrorScreen from './ErrorScreen';
-import spinner from './spinner.svg';
+import Spinner from './Spinner';
 import './Login.css';
 
 class Login extends React.Component {
@@ -258,9 +258,7 @@ class Login extends React.Component {
 
         {this.state.displayLoading ? (
         <div id="loading">
-          <p className="login-center">
-            <img src={spinner} className="login-spinner" alt="spinner" />
-          </p>
+          <Spinner />
           <p className="login-center">{this.props.pleaseWait}</p>
         </div>
         ) : null}

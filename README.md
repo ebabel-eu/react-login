@@ -1,26 +1,26 @@
-# `<Login />` component (React.js)
+# eBabel `<ReactLogin />` component
 Reusable generic login, including a password reset and an account signup.
 It communicates with any backend web services API asynchronolously.
 The styling is functional but minimal, so that it's easy to customize.
 
 ## Install
 ```
-npm install
+npm install @ebabel/react-login
 ```
 
 ## Usage of the Login component
 ```
-import Login from './Login';
+import ReactLogin from 'react-login';
 
-<Login />
+<ReactLogin />
 ```
 
 or (all props are optional and have default values)
 
 ```
-import Login from './Login';
+import ReactLogin from 'react-login';
 
-<Login
+<ReactLogin
   usernameLabel="Gebruikersnaam"
   usernamePlaceholder="bartvanveldhoven"
   passwordLabel="Wachtwoord"
@@ -72,6 +72,8 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 
 ## todo tasks
 - Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
+- Tidy up package.json by removing as many dependencies as possible. Make sure these are also removed from node_modules locally to test this works.
+- Remove Axios and use the native ES6 fetch instead, to reduce the size of the build. is-buffer, a dependency of axios, is especially big. See this article on [Axios vs fetch](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5).
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
@@ -81,56 +83,10 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
 - Add more Jest unit tests.
 - Make sure the component is offline-friendly in the demo. Not sure the offline setup scope is entirely inside the component or actually the responsibility of the component itself, but if the demo works offline, so should the component.
+- Look into a validation method that doesn't talk to the DOM directly but relies entirely on React.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Bootstrap note
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
-
-When checking out this repository, there is no need to bootstrap it again, this was a one-off operation with the command `npx create-react-app react-login`
-
-## Learn More
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-- [Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-- [Analyzing the Bundle Size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-- [Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-- [Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-- [Deployment](https://facebook.github.io/create-react-app/docs/deployment)
-- [`npm run build` fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## `npm run build`
+Builds the component, so it can be used in other applications as a front-end node module for browsers.
 
 ## Attributions
-- [Spinner](./src/spinner.svg) from [loading.io](https://loading.io/)
+- CSS only [spinner](http://tobiasahlin.com/spinkit/)
