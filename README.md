@@ -84,6 +84,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Add more Jest unit tests.
 - Make sure the component is offline-friendly in the demo. Not sure the offline setup scope is entirely inside the component or actually the responsibility of the component itself, but if the demo works offline, so should the component.
 - Look into a validation method that doesn't talk to the DOM directly but relies entirely on React.
+- Setup JSDoc to generate documentation.
 
 ## `npm run build`
 Builds the component, so it can be used in other applications as a front-end node module for browsers.

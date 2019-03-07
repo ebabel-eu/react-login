@@ -308,7 +308,7 @@ class Login extends React.Component {
             onValueChange={(value) => this.handleEmailChange(value, 'signup')}
             label={this.props.emailLabel} />
 
-          <p>{this.props.emailPolicy}</p>
+          <p className="email-policy">{this.props.emailPolicy}</p>
 
           <SubmitButton
             name="signup-button"
