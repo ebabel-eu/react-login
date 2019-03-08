@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SubmitButton = ({name, label, disabled}) => (
- <input type="submit" name={name} value={label} disabled={disabled} />
+ <input type="submit" name={name} defaultValue={label} disabled={disabled} />
 );
 
 SubmitButton.defaultProps = {

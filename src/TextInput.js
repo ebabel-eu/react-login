@@ -13,7 +13,7 @@ class TextInput extends React.Component {
       <label>
         <span>{this.props.label}</span>
         <input type="text"
-          value={this.props.value}
+          defaultValue={this.props.value}
           autoComplete={this.props.autoComplete}
           name={this.props.name}
           required={this.props.required}

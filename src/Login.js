@@ -59,7 +59,7 @@ class Login extends React.Component {
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'login-successful',
-          { detail: { response } }
+          { detail: response.json() }
         ));
       })
       .catch((error) => {
@@ -79,7 +79,7 @@ class Login extends React.Component {
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'forgotten-successful',
-          { detail: { response } }
+          { detail: response.json() }
         ));
 
         if (this.props.afterResetDisplayLogin) {
@@ -104,7 +104,7 @@ class Login extends React.Component {
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'signup-successful',
-          { detail: { response } }
+          { detail: response.json() }
         ));
 
         if (this.props.afterSignupDisplayLogin) {
