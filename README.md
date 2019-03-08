@@ -54,7 +54,7 @@ The detail property of that event contains the response of the web API endpoint 
 Any other code outside the scope of this component can listen for that custom event and receive the response data.
 
 ## Successful password reset event
-When the Axios call to the password reset endpoint is successful, a custom event `forgotten-successful` will be dispatched.
+When the Ajax call to the password reset endpoint is successful, a custom event `forgotten-successful` will be dispatched.
 
 The detail property of that event contains the response of the web API endpoint that performed the password reset.
 
@@ -63,7 +63,7 @@ Any code outside the scope of this login component can listen for that event and
 The property afterResetDisplayLogin is set to false by default. If it is set to true, the event `forgotten-successful` will still be dispatched, and the login screen will be displayed.
 
 ## Successful signup event
-When the Axios call to the signup endpoint is successful, a custom event `signup-successful` will be dispatched.
+When the Ajax call to the signup endpoint is successful, a custom event `signup-successful` will be dispatched.
 
 The detail property of that event contains the response of the web API endpoint that performed the signup.
 
@@ -79,7 +79,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
-- Prevent double clicking on submit button based on Axios async process.
+- Prevent double clicking on submit button based on Ajax async process.
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
 - Move all components of Login into separate repositories.
 - Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
@@ -87,6 +87,8 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Make sure the component is offline-friendly in the demo. Not sure the offline setup scope is entirely inside the component or actually the responsibility of the component itself, but if the demo works offline, so should the component.
 - Look into a validation method that doesn't talk to the DOM directly but relies entirely on React.
 - Setup JSDoc to generate documentation.
+- Use webpack to create 2 versions of react-login.js: one that is for importing into ES6 modules, and one that can be used directly as-is in a browser, without any module import.
+- Treeshake react-login.js so it's smaller than 34k and only contains code that's really needed.
 
 ## `npm run build`
 Builds the component, so it can be used in other applications as a front-end node module for browsers.

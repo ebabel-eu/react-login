@@ -7,8 +7,7 @@
     "web component",
     "login",
     "signup",
-    "forgotten password",
-    "axios"
+    "forgotten password"
   ],
   "homepage": "https://github.com/ebabel-eu/react-login/#readme",
   "bugs": {
@@ -27,7 +26,6 @@
     "build": "node ./node_modules/.bin/webpack --mode production"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
   },

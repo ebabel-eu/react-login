@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
@@ -11,45 +10,52 @@ import ErrorScreen from './ErrorScreen';
 import Spinner from './Spinner';
 import './Login.css';
 
+const POST = {
+  method: "POST", // *GET, POST, PUT, DELETE, etc.
+  mode: "cors", // no-cors, cors, *same-origin
+  cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+  credentials: "same-origin", // include, *same-origin, omit
+  headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+  },
+  redirect: "follow", // manual, *follow, error
+  referrer: "no-referrer", // no-referrer, *client
+};
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
 
+    const {
+      username, password, email, stayLogged, 
+      displayLogin, displayForgotten, displaySignup, displayLoading, displayError,
+      validLoginForm, validForgottenForm, validSignupForm,
+      error,
+    } = this.props;
+
     this.state = {
-      username: props.username,
-      password: props.password,
-      email: props.email,
-      stayLogged: props.stayLogged,
-      displayLogin: props.displayLogin,
-      displayForgotten: props.displayForgotten,
-      displaySignup: props.displaySignup,
-      displayLoading: props.displayLoading,
-      displayError: props.displayError,
-      validLoginForm: props.validLoginForm,
-      validForgottenForm: props.validForgottenForm,
-      validSignupForm: props.validSignupForm,
-      error: props.error,
+      username, password, email, stayLogged, 
+      displayLogin, displayForgotten, displaySignup, displayLoading, displayError,
+      validLoginForm, validForgottenForm, validSignupForm,
+      error,
     };
   }
 
   handleLogin(e) {
     e.preventDefault();
 
-    const payload = {
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.email,
-      stayLogged: this.state.stayLogged,
-    };
+    const { username, password, email, stayLogged } = this.state;
+    const body = { username, password, email, stayLogged };
 
-    if (this.state.stayLogged) {
-      payload.stayLoggedDuration = this.props.stayLoggedDuration;
-      payload.stayLoggedUnit = this.props.stayLoggedUnit;
+    if (stayLogged) {
+      body.stayLoggedDuration = this.props.stayLoggedDuration;
+      body.stayLoggedUnit = this.props.stayLoggedUnit;
     }
 
     this.switchTo(e, 'loading');
 
-    axios.post(this.props.loginEndpoint, payload)
+    fetch(this.props.loginEndpoint, { ...POST, body: JSON.stringify(body) })
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'login-successful',
@@ -65,13 +71,11 @@ class Login extends React.Component {
   handleForgotten(e) {
     e.preventDefault();
 
-    const payload = {
-      email: this.state.email,
-    };
+    const body = { email: this.state.email  };
 
     this.switchTo(e, 'loading');
 
-    axios.post(this.props.forgottenEndpoint, payload)
+    fetch(this.props.forgottenEndpoint, { ...POST, body: JSON.stringify(body) })
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'forgotten-successful',
@@ -91,15 +95,12 @@ class Login extends React.Component {
   handleSignup(e) {
     e.preventDefault();
 
-    const payload = {
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.email,
-    };
+    const { username, password, email } = this.state;
+    const body = { username, password, email };
 
     this.switchTo(e, 'loading');
 
-    axios.post(this.props.signupEndpoint, payload)
+    fetch(this.props.signupEndpoint, { ...POST, body: JSON.stringify(body) })
       .then((response) => {
         window.dispatchEvent(new window.CustomEvent(
           'signup-successful',
