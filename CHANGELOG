@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.0
+- Make a demo that works on its own, from this repository with a small Node express.js that serves both the static client and a simple API that stores data in memory.
+
 ## v0.2.1
 - response should be response.json() instead of just response.
 - On each form field, switch from value to defaultValue because that's best practice in React forms.
