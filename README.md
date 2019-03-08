@@ -74,7 +74,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 ## todo tasks
 - Make a small Node express.js API to test the responses. They should be response.json() instead of just response.
 - Make a demo that works on its own, from this repository.
-- Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property).
+- Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
@@ -89,6 +89,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Setup JSDoc to generate documentation.
 - Use webpack to create 2 versions of react-login.js: one that is for importing into ES6 modules, and one that can be used directly as-is in a browser, without any module import.
 - Treeshake react-login.js so it's smaller than 34k and only contains code that's really needed.
+- Look at this [cool react-login](https://www.npmjs.com/package/react-modal-login) component for inspiration.
 
 ## `npm run build`
 Builds the component, so it can be used in other applications as a front-end node module for browsers.
