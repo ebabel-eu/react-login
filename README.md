@@ -72,8 +72,7 @@ Any code outside the scope of this login component can listen for that event and
 The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
 ## todo tasks
-- Make a small Node express.js API to test the responses. They should be response.json() instead of just response.
-- Make a demo that works on its own, from this repository.
+- Make a demo that works on its own, from this repository with a small Node express.js that serves both the static client and a simple API that stores data in memory.
 - Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.

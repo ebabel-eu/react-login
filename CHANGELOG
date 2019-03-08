@@ -2,7 +2,6 @@
 
 ## v0.2.1
 - response should be response.json() instead of just response.
-- Make a small Node express.js API to test the responses.
 - On each form field, switch from value to defaultValue because that's best practice in React forms.
 
 ## v0.2.0
