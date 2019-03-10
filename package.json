@@ -22,7 +22,7 @@
     "url": "git+https://github.com/ebabel-eu/react-login.git"
   },
   "scripts": {
-    "start": "http-server ./demo/",
+    "start": "node ./demo/demo-dev-server.js",
     "build": "node ./node_modules/.bin/webpack --mode production"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "copy-webpack-plugin": "^5.0.0",
     "css-loader": "^2.1.0",
     "express": "^4.16.4",
     "style-loader": "0.23.1",
