@@ -91,6 +91,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Look at this [cool react-login](https://www.npmjs.com/package/react-modal-login) component for inspiration.
 - Also look at this article about [React forms](https://medium.com/@rossbulat/an-introduction-to-using-form-elements-in-react-3778042ff334)
 - Add an animated gif (or better) to show how ReactLogin works.
+- If there is no react-login.js build at all, the copy to demo will fail, but work on a second run (low priority fix).
 
 ## `npm run build`
 Builds the component, so it can be used in other applications as a front-end node module for browsers.
