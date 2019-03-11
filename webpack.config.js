@@ -1,8 +1,7 @@
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/Login.js',
+  entry: './src/ReactLogin.js',
   output: {
     path: path.resolve(__dirname, './'),
     filename: 'react-login.js',
@@ -29,9 +28,5 @@ module.exports = {
   externals: {
     'react': 'commonjs react'
   },
-  plugins: [
-    new CopyPlugin([
-      { from: './react-login.js', to: 'demo' },
-    ]),
-  ],
+  plugins: [],
 };

@@ -8,7 +8,7 @@ import SubmitButton from './SubmitButton';
 import Checkbox from './Checkbox';
 import ErrorScreen from './ErrorScreen';
 import Spinner from './Spinner';
-import './Login.css';
+import './ReactLogin.css';
 
 const POST = {
   method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -23,7 +23,7 @@ const POST = {
   referrer: "no-referrer", // no-referrer, *client
 };
 
-class Login extends React.Component {
+class ReactLogin extends React.Component {
   constructor(props) {
     super(props);
 
@@ -322,7 +322,7 @@ class Login extends React.Component {
   }
 }
 
-Login.defaultProps = {
+ReactLogin.defaultProps = {
   username: '',
   password: '',
   email: '',
@@ -364,7 +364,7 @@ Login.defaultProps = {
   errorSubHeaderFontSize: '1.25em',
 };
 
-Login.propTypes = {
+ReactLogin.propTypes = {
   username: PropTypes.string,
   usernamePlaceholder: PropTypes.string,
   usernameLabel: PropTypes.string,
@@ -410,4 +410,4 @@ Login.propTypes = {
   errorSubHeaderFontSize: PropTypes.string,
 };
 
-export default Login;
+export default ReactLogin;
