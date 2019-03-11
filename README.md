@@ -75,6 +75,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Make a demo that works on its own, from this repository with a small Node express.js that serves both the static client and a simple API that stores data in memory.
 - Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
+- Add [redux](https://react-redux.js.org/introduction/quick-start) in demo
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css

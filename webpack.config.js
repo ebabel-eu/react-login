@@ -36,17 +36,17 @@ module.exports = [
 
   // Demo configuration to run locally in development with npm start.
   {
-    entry: './demo/src/index.js',
+    entry: './demo/index.js',
     output: {
       path: path.resolve(__dirname, './'),
-      filename: './demo/demo.js',
+      filename: 'demo/demo.js',
       libraryTarget: 'commonjs2' 
     },
     module: {
       rules: [
         {
           test: /\.js?$/,
-          include: path.resolve(__dirname, 'src'),
+          include: path.resolve(__dirname, 'demo'),
           exclude: /node_modules/,
           use: [
             {

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // In production, in your app, use:
 // import ReactLogin from '@thomasamar/react-login';
-import ReactLogin from '../../src/ReactLogin'; // Local relative path is for demo only.
+import ReactLogin from '../react-login'; // Local relative path is for demo only.
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
