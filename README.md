@@ -82,6 +82,9 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 
 ## todo tasks
 - Add [redux](https://react-redux.js.org/introduction/quick-start) in demo but keep it optional to handle state with Redux because some users may not opt for Redux. ReactLogin should be optional.
+- Setup JSDoc to generate documentation.
+- Add Jest unit tests.
+- Add test coverage reporting (istanbul?).
 - Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
@@ -91,16 +94,13 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
 - Move all components of Login into separate repositories.
 - Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
-- Add more Jest unit tests.
 - Make sure the component is offline-friendly in the demo. Not sure the offline setup scope is entirely inside the component or actually the responsibility of the component itself, but if the demo works offline, so should the component.
 - Look into a validation method that doesn't talk to the DOM directly but relies entirely on React.
-- Setup JSDoc to generate documentation.
 - Use webpack to create 2 versions of react-login.js: one that is for importing into ES6 modules, and one that can be used directly as-is in a browser, without any module import.
 - Treeshake react-login.js so it's smaller than 34k and only contains code that's really needed.
 - Look at this [cool react-login](https://www.npmjs.com/package/react-modal-login) component for inspiration.
 - Also look at this article about [React forms](https://medium.com/@rossbulat/an-introduction-to-using-form-elements-in-react-3778042ff334)
 - Add an animated gif (or better, a youtube video?) to show how ReactLogin works.
-- If there is no react-login.js build at all, the copy to demo will fail, but work on a second run (low priority fix).
 - Make the usage of the API default [http verbs more RESTfull](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
 ## `npm run build`
