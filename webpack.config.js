@@ -40,7 +40,7 @@ module.exports = [
     output: {
       path: path.resolve(__dirname, './'),
       filename: 'demo/demo.js',
-      libraryTarget: 'commonjs2' 
+      libraryTarget: 'umd' 
     },
     module: {
       rules: [
