@@ -81,9 +81,9 @@ Any code outside the scope of this login component can listen for that event and
 The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
 ## todo tasks
+- Add [redux](https://react-redux.js.org/introduction/quick-start) in demo but keep it optional to handle state with Redux because some users may not opt for Redux. ReactLogin should be optional.
 - Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
-- Add [redux](https://react-redux.js.org/introduction/quick-start) in demo but keep it optional to handle state with Redux because some users may not opt for Redux. ReactLogin should be optional.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
@@ -99,7 +99,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Treeshake react-login.js so it's smaller than 34k and only contains code that's really needed.
 - Look at this [cool react-login](https://www.npmjs.com/package/react-modal-login) component for inspiration.
 - Also look at this article about [React forms](https://medium.com/@rossbulat/an-introduction-to-using-form-elements-in-react-3778042ff334)
-- Add an animated gif (or better) to show how ReactLogin works.
+- Add an animated gif (or better, a youtube video?) to show how ReactLogin works.
 - If there is no react-login.js build at all, the copy to demo will fail, but work on a second run (low priority fix).
 - Make the usage of the API default [http verbs more RESTfull](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
