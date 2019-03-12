@@ -9,13 +9,19 @@ npm install @thomasamar/react-login --save
 ```
 
 ## Usage of the Login component
+The props you shouldn't leave on their default values, at aminimum, are the API endpoints, since that's how the component will interface with your business logic. Each call is a POST.
+
 ```
 import ReactLogin from '@thomasamar/react-login';
 
-<ReactLogin />
+<ReactLogin
+  loginEndpoint="https://address-of-your-api/login"
+  forgottenEndpoint="https://address-of-your-api/password"
+  signupEndpoint="https://address-of-your-api/signup"
+/>
 ```
 
-or (all props are optional and have default values)
+All props are optional and have default values you cn overwrite.
 
 ```
 import ReactLogin from '@thomasamar/react-login';
@@ -42,7 +48,10 @@ import ReactLogin from '@thomasamar/react-login';
   emailPolicy="Uw e-mail is nodig in de geval uw vergeet uw wachtwoord en wil het reset. Uw e-mail word niet voor iets ander gebruikt."
   errorHelpText="Wat wilt u anders doen?"
   afterResetDisplayLogin={true}
-
+  afterSignupDisplayLogin={true}
+  errorTextColor="#cc0033"
+  errorHeaderFontSize="1.75em"
+  errorSubHeaderFontSize="1.5em"
 />
 ```
 
@@ -72,10 +81,9 @@ Any code outside the scope of this login component can listen for that event and
 The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
 ## todo tasks
-- Make a demo that works on its own, from this repository with a small Node express.js that serves both the static client and a simple API that stores data in memory.
 - Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
-- Add [redux](https://react-redux.js.org/introduction/quick-start) in demo
+- Add [redux](https://react-redux.js.org/introduction/quick-start) in demo but keep it optional to handle state with Redux because some users may not opt for Redux. ReactLogin should be optional.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
@@ -93,6 +101,7 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Also look at this article about [React forms](https://medium.com/@rossbulat/an-introduction-to-using-form-elements-in-react-3778042ff334)
 - Add an animated gif (or better) to show how ReactLogin works.
 - If there is no react-login.js build at all, the copy to demo will fail, but work on a second run (low priority fix).
+- Make the usage of the API default [http verbs more RESTfull](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
 ## `npm run build`
 Builds the component, so it can be used in other applications as a front-end node module for browsers.
