@@ -60,5 +60,9 @@ module.exports = [
         },
       ]
     },
+    externals: {
+      'react': 'root React',
+      'react-dom': 'root ReactDOM',
+    },
   },
 ];
