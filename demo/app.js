@@ -11,15 +11,51 @@ class App extends React.Component {
     window.addEventListener('login-successful', (e) => {
       const { authenticationToken, loginSuccessful } = e.detail;  // note: the e.detail data comes from the API response and can be anything, based on the API the ReactLogin works with.
       this.setState({ authenticationToken, loginSuccessful });
-      // todo: unload ReactLogin and load another component that gives access to the demo app next screen.
+
+      // Unload ReactLogin and load the dashboard component.
+      if (authenticationToken && loginSuccessful) {
+        this.setState({
+          displayReactLogin: false,
+          displayDashboard: true,
+          displayPasswordReset: false,
+          displayAccountCreated: false,
+        });
+      }
     });
 
     window.addEventListener('forgotten-successful', (e) => {
-      console.log(e.detail);
+      const { passwordReset } = e.detail;
+
+      if (passwordReset) {
+        this.setState({
+          displayReactLogin: false,
+          displayDashboard: false,
+          displayPasswordReset: true,
+          displayAccountCreated: false,
+        });
+      }
     });
 
     window.addEventListener('signup-successful', (e) => {
-      console.log(e.detail);
+      const { accountCreated } = e.detail;
+
+      if (accountCreated) {
+        this.setState({
+          displayReactLogin: false,
+          displayDashboard: false,
+          displayPasswordReset: false,
+          displayAccountCreated: true,
+        });
+      }
+    });
+  }
+
+  componentWillMount() {
+    this.setState({
+      displayReactLogin: true,
+      displayDashboard: false,  // The dashboard requires for the user to be logged in first and to obtain a authenticationToken.
+      displayPasswordReset: false,
+      displayAccountCreated: false,
     });
   }
 
@@ -32,6 +68,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        {this.state.displayReactLogin ?
         <ReactLogin
           loginEndpoint="/api/login"
           forgottenEndpoint="/api/password"
@@ -57,12 +94,31 @@ class App extends React.Component {
           pleaseWait="Merci de patienter&hellip;"
           emailPolicy="Votre email est nécessaire si vous oubliez votre mot de passe et souhaitez le réinitialiser. Votre adresse email ne sera pas utilisée à d'autres fins."
           errorHelpText="Que voulez-vous faire?"
-          afterResetDisplayLogin={true}
-          afterSignupDisplayLogin={true}
+          afterResetDisplayLogin={false}
+          afterSignupDisplayLogin={false}
           errorTextColor="#cc0033"
           errorHeaderFontSize="1.75em"
           errorSubHeaderFontSize="1.5em"
         />
+        : null}
+
+        {this.state.displayDashboard ?
+        <div className="dashboard">
+          <p>You are successfully logged in to this application dashboard.</p>
+        </div>
+        : null}
+
+        {this.state.displayPasswordReset ?
+        <div className="password-reset">
+          <p>An link has been e-mailed to you. Please follow that link to complete resetting your password.</p>
+        </div>
+        : null}
+
+        {this.state.displayAccountCreated ?
+        <div className="account-created">
+          <p>Your account has been created. To enable it, please check your e-mail and follow the link that has been sent to you.</p>
+        </div>
+        : null}
       </div>
     );
   }

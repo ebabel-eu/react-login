@@ -15,20 +15,38 @@ const HTTP_STATUS = {
   RUNTIME_ERROR: 500,
 };
 
+const { version } = require('../package.json');
+
 app.use(express.static('demo'));
 app.use(bodyParser.json());
 
 // Document how to use the demo API endpoint and list all users in memory.
 app.get('/api', (req, res) => res.send({
+  version,
   login: {
     description: 'Login with username and password to obtain an authenticationToken.',
-    endpoint: '/api/login',
+    url: '/api/login',
     method: 'POST',
-    payload: 'JSON { username: string, password: string, stayLogged: boolean, stayLoggedDuration: number?, stayLoggedUnit: string? }',
+    payload: {
+      username: 'string', password: 'string', stayLogged: 'boolean',
+      stayLoggedDuration: 'number?', stayLoggedUnit: 'string?', // number? and string? mean these fields are optional.
+    },
   },
-  password: '/api/password',
-  signup: '/api/signup',
-  users: users.map(u => { return { username: u.username, password: 'not-available', email: u.email } }), // Hide passwords.
+  password: {
+    description: 'Reset the password of an existing user based on supplied e-mail.',
+    url: '/api/password',
+    method: 'POST',
+    payload: { email: 'string' },
+  },
+  signup: {
+    description: 'Create a new account that will be able to login.',
+    url: '/api/signup',
+    method: 'POST',
+    payload: { username: 'string', password: 'string', email: 'string' },
+  },
+  users: users.map(u => {
+    return { username: u.username, password: '######', email: u.email }
+  }), // Hide passwords.
   log,
 }));
 
@@ -57,7 +75,7 @@ app.post('/api/login', (req, res) => {
   }
 
   // Login is successful.
-  const authenticationToken = crypto.randomBytes(16).toString("hex"); 
+  const authenticationToken = crypto.randomBytes(16).toString("hex");
   log.push({
     username, loginSuccessful, authenticationToken,
     loggedDate: new Date().toLocaleString('nl'),
@@ -75,27 +93,61 @@ app.post('/api/login', (req, res) => {
 app.post('/api/password', (req, res) => {
   const { email } = req.body;
 
-  log.push({
-    email, passwordReset: true,
-    resetDate: new Date().toLocaleString('nl'),
-  });
-  
   res.setHeader('Content-Type', 'application/json');
+
+  // Check if the e-mail is registered to an existing user.
+  const passwordReset = users.map(u => u.email === email).length !== 0;
+
+  log.push({
+    email,
+    passwordReset,
+    resetDate: (passwordReset) ? new Date().toLocaleString('nl') : undefined,
+  });
+
+  // Password reset will not happen because the e-mail could not be found.
+  if (!passwordReset) {
+    res.status(HTTP_STATUS.NOT_FOUND);
+    res.send({
+      actions: ['log-entry-created'],
+      passwordReset,
+    });
+
+    return;
+  }
+
+  // Password reset can go ahead since e-mail has been found.
   res.status(HTTP_STATUS.OK);
   res.send({
     actions: ['link-emailed-to-reset-password', 'log-entry-created'],
+    passwordReset,
   });
 });
 
 app.post('/api/signup', (req, res) => {
   const { username, password, email } = req.body;
 
-  users.push({ username, password, email });
-
   res.setHeader('Content-Type', 'application/json');
-  res.status(HTTP_STATUS.CREATED);
+
+  // Check the account doesn't already exist.
+  const accountCreated = users.map(u => u.username === username || u.email === email).length === 0;
+
+  // The user can be created.
+  if (accountCreated) {
+    users.push({ username, password, email });
+
+    res.status(HTTP_STATUS.CREATED);
+    res.send({
+      actions: ['new-user-created'],
+      accountCreated,
+    });
+
+    return;
+  }
+
+  // The user cannot be created.
+  res.status(HTTP_STATUS.UNAUTHORIZED);
   res.send({
-    actions: ['new-user-created'],
+    accountCreated,
   });
 });
 

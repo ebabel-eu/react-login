@@ -86,6 +86,9 @@ The property afterSignupDisplayLogin is set to false by default. If it is set to
 - Add Jest unit tests.
 - Add test coverage reporting (istanbul?).
 - Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
+- These messages should be a properties of ReactLogin, so they can be customized: "Login failed", "Password reset failed", and "Signup failed".
+- Translate the demo app to French.
+- To take the demo API further: send an e-mail with a link that will modify the password, and send an e-mail to enable the account that has been created then use that `enabled` flag to allow or reject logging in.
 - New screen: when password is reset, a special link is e-mailed, which gets user to a password update screen (new password, twice). Integrate all this in the demo, I don't think the emailing itself is within the scope of the component, not is the link but he component needs a hook to jump directly to showing the password reset screen.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.

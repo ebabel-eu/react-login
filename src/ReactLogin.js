@@ -10,15 +10,13 @@ import ErrorScreen from './ErrorScreen';
 import Spinner from './Spinner';
 import './ReactLogin.css';
 
+// note: defaults are prescede with an asterisk in comments below.
 const POST = {
   method: "POST", // *GET, POST, PUT, DELETE, etc.
   mode: "cors", // no-cors, cors, *same-origin
   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
   credentials: "same-origin", // include, *same-origin, omit
-  headers: {
-      "Content-Type": "application/json",
-      // "Content-Type": "application/x-www-form-urlencoded",
-  },
+  headers: { "Content-Type": "application/json" }, // application/x-www-form-urlencoded
   redirect: "follow", // manual, *follow, error
   referrer: "no-referrer", // no-referrer, *client
 };
@@ -67,7 +65,7 @@ class ReactLogin extends React.Component {
       .then((response) => {
         response.json().then(data => {
           if (response.status !== HTTP_STATUS.OK) {
-            this.setState({ error: 'Login failed' }); // todo: this message should be a property, so it can be customized.
+            this.setState({ error: 'Login failed' });
             this.switchTo(null, 'error');
             return;
           }
@@ -95,7 +93,7 @@ class ReactLogin extends React.Component {
       .then((response) => {
         response.json().then(data => {
           if (response.status !== HTTP_STATUS.OK) {
-            this.setState({ error: 'Password reset failed' }); // todo: this message should be a property, so it can be customized.
+            this.setState({ error: 'Password reset failed' });
             this.switchTo(null, 'error');
             return;
           }
@@ -128,7 +126,7 @@ class ReactLogin extends React.Component {
       .then((response) => {
         response.json().then(data => {
           if (response.status !== HTTP_STATUS.CREATED && response.status !== HTTP_STATUS.OK) {
-            this.setState({ error: 'Signup failed.' }); // todo: this message should be a property, so it can be customized.
+            this.setState({ error: 'Signup failed' });
             this.switchTo(null, 'error');
             return;
           }
