@@ -101,8 +101,8 @@ Any code outside the scope of this login component can listen for that event and
 
 The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
-## Development
-You are most welcome to contribute to [developing `<ReactLogin />`](DEVELOPMENT.md).
+## Contributing
+You are most welcome to [contribute to `<ReactLogin />`](CONTRIBUTING.md).
 
 ## Attributions
 - CSS only [spinner](http://tobiasahlin.com/spinkit/)
