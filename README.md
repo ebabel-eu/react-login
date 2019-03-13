@@ -21,7 +21,7 @@ import ReactLogin from '@thomasamar/react-login';
 />
 ```
 
-All props are optional and have default values you cn overwrite.
+All props are optional and have default values you can overwrite.
 
 ```
 import ReactLogin from '@thomasamar/react-login';
