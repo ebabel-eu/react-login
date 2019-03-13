@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as C from './constants';
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
@@ -9,25 +10,6 @@ import Checkbox from './Checkbox';
 import ErrorScreen from './ErrorScreen';
 import Spinner from './Spinner';
 import './ReactLogin.css';
-
-// note: defaults are prescede with an asterisk in comments below.
-const POST = {
-  method: "POST", // *GET, POST, PUT, DELETE, etc.
-  mode: "cors", // no-cors, cors, *same-origin
-  cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-  credentials: "same-origin", // include, *same-origin, omit
-  headers: { "Content-Type": "application/json" }, // application/x-www-form-urlencoded
-  redirect: "follow", // manual, *follow, error
-  referrer: "no-referrer", // no-referrer, *client
-};
-
-const HTTP_STATUS = {
-  OK: 200,
-  CREATED: 201,
-  UNAUTHORIZED: 401,
-  NOT_FOUND: 404,
-  RUNTIME_ERROR: 500,
-};
 
 class ReactLogin extends React.Component {
   constructor(props) {
@@ -61,10 +43,10 @@ class ReactLogin extends React.Component {
 
     this.switchTo(e, 'loading');
 
-    fetch(this.props.loginEndpoint, { ...POST, body: JSON.stringify(body) })
+    fetch(this.props.loginEndpoint, { ...C.POST, body: JSON.stringify(body) })
       .then((response) => {
         response.json().then(data => {
-          if (response.status !== HTTP_STATUS.OK) {
+          if (response.status !== C.HTTP_STATUS.OK) {
             this.setState({ error: 'Login failed' });
             this.switchTo(null, 'error');
             return;
@@ -89,10 +71,10 @@ class ReactLogin extends React.Component {
 
     this.switchTo(e, 'loading');
 
-    fetch(this.props.forgottenEndpoint, { ...POST, body: JSON.stringify(body) })
+    fetch(this.props.forgottenEndpoint, { ...C.POST, body: JSON.stringify(body) })
       .then((response) => {
         response.json().then(data => {
-          if (response.status !== HTTP_STATUS.OK) {
+          if (response.status !== C.HTTP_STATUS.OK) {
             this.setState({ error: 'Password reset failed' });
             this.switchTo(null, 'error');
             return;
@@ -122,10 +104,10 @@ class ReactLogin extends React.Component {
 
     this.switchTo(e, 'loading');
 
-    fetch(this.props.signupEndpoint, { ...POST, body: JSON.stringify(body) })
+    fetch(this.props.signupEndpoint, { ...C.POST, body: JSON.stringify(body) })
       .then((response) => {
         response.json().then(data => {
-          if (response.status !== HTTP_STATUS.CREATED && response.status !== HTTP_STATUS.OK) {
+          if (response.status !== C.HTTP_STATUS.CREATED && response.status !== C.HTTP_STATUS.OK) {
             this.setState({ error: 'Signup failed' });
             this.switchTo(null, 'error');
             return;
