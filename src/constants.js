@@ -1,4 +1,4 @@
-module.export = {
+const C = {
   POST: { // note: defaults are presceded with an asterisk in comments below.
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
@@ -16,3 +16,5 @@ module.export = {
     RUNTIME_ERROR: 500,
   },
 };
+
+export default C;

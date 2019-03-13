@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as C from './constants';
+import C from './constants';
 import TextInput from './TextInput';
 import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
