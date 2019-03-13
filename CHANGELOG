@@ -1,7 +1,13 @@
 # Changelog
 
 ## 0.3.1
-- Refactor: use destructuring, make Login.js smaller, remove all IDs and only use className at most, make one input component for text, password and email (pass type as a property). Trim the input.
+- Refactor:
+  - use destructuring,
+  - make ReactLogin.js smaller,
+  - remove all IDs,
+  - only use className at most,
+  - make one input component for text, password and email (pass type as a property), and
+  - trim the input.
 - These messages should be a properties of ReactLogin, so they can be customized: "Login failed", "Password reset failed", and "Signup failed".
 - Translate the demo app to French.
 
