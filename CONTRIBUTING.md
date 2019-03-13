@@ -32,6 +32,7 @@ This command both builds the component and will listen locally on port 3000 wher
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
 - Proofread the Dutch text in demo index.js and README.md
 - Make the Login component style dynamic with properties and delete Login.css
+- Improve the demo styling but make sure the separation between basic style of ReactLogin and the demo style don't get mixed.
 - Prevent double clicking on submit button based on Ajax async process.
 - Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
 - Move all components of Login into separate repositories.
