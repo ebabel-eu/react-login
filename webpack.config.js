@@ -29,7 +29,7 @@ module.exports = [
       ]
     },
     externals: {
-      'react': 'commonjs react'
+      'react': 'commonjs2 react'
     },
     plugins: [],
   },
@@ -42,6 +42,7 @@ module.exports = [
       filename: 'demo/demo.js',
       libraryTarget: 'umd' 
     },
+    devtool: 'source-map',
     module: {
       rules: [
         {

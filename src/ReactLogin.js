@@ -23,6 +23,14 @@ const POST = {
   referrer: "no-referrer", // no-referrer, *client
 };
 
+const HTTP_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+  RUNTIME_ERROR: 500,
+};
+
 class ReactLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -45,8 +53,8 @@ class ReactLogin extends React.Component {
   handleLogin(e) {
     e.preventDefault();
 
-    const { username, password, email, stayLogged } = this.state;
-    const body = { username, password, email, stayLogged };
+    const { username, password, stayLogged } = this.state;
+    const body = { username, password, stayLogged };
 
     if (stayLogged) {
       body.stayLoggedDuration = this.props.stayLoggedDuration;
@@ -57,10 +65,18 @@ class ReactLogin extends React.Component {
 
     fetch(this.props.loginEndpoint, { ...POST, body: JSON.stringify(body) })
       .then((response) => {
-        window.dispatchEvent(new window.CustomEvent(
-          'login-successful',
-          { detail: response.json() }
-        ));
+        response.json().then(data => {
+          if (response.status !== HTTP_STATUS.OK) {
+            this.setState({ error: 'Login failed' }); // todo: this message should be a property, so it can be customized.
+            this.switchTo(null, 'error');
+            return;
+          }
+
+          window.dispatchEvent(new window.CustomEvent(
+            'login-successful',
+            { detail: data },
+          ));
+        });
       })
       .catch((error) => {
         this.setState({ error: error.message });
@@ -77,14 +93,22 @@ class ReactLogin extends React.Component {
 
     fetch(this.props.forgottenEndpoint, { ...POST, body: JSON.stringify(body) })
       .then((response) => {
-        window.dispatchEvent(new window.CustomEvent(
-          'forgotten-successful',
-          { detail: response.json() }
-        ));
+        response.json().then(data => {
+          if (response.status !== HTTP_STATUS.OK) {
+            this.setState({ error: 'Password reset failed' }); // todo: this message should be a property, so it can be customized.
+            this.switchTo(null, 'error');
+            return;
+          }
 
-        if (this.props.afterResetDisplayLogin) {
-          this.switchTo(e, 'login');
-        }
+          window.dispatchEvent(new window.CustomEvent(
+            'forgotten-successful',
+            { detail: data },
+          ));
+
+          if (this.props.afterResetDisplayLogin) {
+            this.switchTo(e, 'login');
+          }
+        });
       })
       .catch((error) => {
         this.setState({ error: error.message });
@@ -102,14 +126,22 @@ class ReactLogin extends React.Component {
 
     fetch(this.props.signupEndpoint, { ...POST, body: JSON.stringify(body) })
       .then((response) => {
-        window.dispatchEvent(new window.CustomEvent(
-          'signup-successful',
-          { detail: response.json() }
-        ));
+        response.json().then(data => {
+          if (response.status !== HTTP_STATUS.CREATED && response.status !== HTTP_STATUS.OK) {
+            this.setState({ error: 'Signup failed.' }); // todo: this message should be a property, so it can be customized.
+            this.switchTo(null, 'error');
+            return;
+          }
 
-        if (this.props.afterSignupDisplayLogin) {
-          this.switchTo(e, 'login');
-        }
+          window.dispatchEvent(new window.CustomEvent(
+            'signup-successful',
+            { detail: data },
+          ));
+
+          if (this.props.afterSignupDisplayLogin) {
+            this.switchTo(e, 'login');
+          }
+        });
       })
       .catch((error) => {
         this.setState({ error: error.message });
