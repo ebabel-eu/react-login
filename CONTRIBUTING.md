@@ -39,6 +39,7 @@ This command both builds the component and will listen locally on port 3000 wher
 - Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
 - Make sure the component is offline-friendly in the demo. Not sure the offline setup scope is entirely inside the component or actually the responsibility of the component itself, but if the demo works offline, so should the component.
 - Remove "X-Powered-By" header from demo API responses.
+- When developing with the demo, the react-login.js needs a mapfile, not just the demo app.
 - Look into a validation method that doesn't talk to the DOM directly but relies entirely on React.
 - Use webpack to create 2 versions of react-login.js: one that is for importing into ES6 modules, and one that can be used directly as-is in a browser, without any module import.
 - Treeshake react-login.js so it's smaller than 34k and only contains code that's really needed.
