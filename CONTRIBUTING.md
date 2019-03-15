@@ -19,7 +19,7 @@ Note: these development dependencies are not installed when an application only 
 Builds the component and the demo.
 
 ### `npm start`
-This command both builds the component and will listen locally on port 3000 where it's possible to browse to a demo app that uses `<ReactLogin />`: http://localhost:3000
+This command both builds the component and will listen locally on port 8080 where it's possible to browse to a demo app that uses `<ReactLogin />`: http://localhost:8080
 
 ## todo tasks
 - Add [redux](https://react-redux.js.org/introduction/quick-start) in demo but keep it optional to handle state with Redux because some users may not opt for Redux. ReactLogin redux support should be optional.
