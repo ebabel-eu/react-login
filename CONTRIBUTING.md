@@ -26,7 +26,7 @@ This command both builds the component and will listen locally on port 8080 wher
 - Setup JSDoc to generate documentation.
 - Add Jest unit tests.
 - Add test coverage reporting (istanbul?).
-- To take the demo API further: send an e-mail with a link that will modify the password, and send an e-mail to enable the account that has been created then use that `enabled` flag to allow or reject logging in.
+- To take the demo API further: [send an e-mail](https://nodemailer.com/about/) with a link that will modify the password, and send an e-mail to enable the account that has been created then use that `enabled` flag to allow or reject logging in.
 - New screen: when password is reset, a special link is e-mailed, which gets user to a password update screen (new password, twice). Integrate all this in the demo, I don't think the emailing itself is within the scope of the component, not is the link but he component needs a hook to jump directly to showing the password reset screen.
 - Replace DOM validation with React-only validation. Prevent submitting login form when user puts in just spaces in username and password.
 - Switch the Please wait text to Operation completed + remove spinner, and make all that optional.
