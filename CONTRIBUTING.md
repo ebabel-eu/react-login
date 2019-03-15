@@ -23,7 +23,8 @@ This command both builds the component and will listen locally on port 8080 wher
 
 ## todo tasks
 - Add [redux](https://react-redux.js.org/introduction/quick-start) in demo but keep it optional to handle state with Redux because some users may not opt for Redux. ReactLogin redux support should be optional.
-- Setup JSDoc to generate documentation.
+- Add JSDoc to generate documentation.
+- Add ESLinting.
 - Add Jest unit tests.
 - Add test coverage reporting (istanbul?).
 - To take the demo API further: [send an e-mail](https://nodemailer.com/about/) with a link that will modify the password, and send an e-mail to enable the account that has been created then use that `enabled` flag to allow or reject logging in.
