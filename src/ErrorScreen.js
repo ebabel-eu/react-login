@@ -16,9 +16,9 @@ class ErrorScreen extends React.Component {
         ) : null}
 
         <ul>
-          <li><a href={`#${this.props.loginHash}`} onClick={(e) => this.handleClick(e, 'login')}>{this.props.loginLink}</a></li>
-          <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.handleClick(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
-          <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.handleClick(e, 'signup')}>{this.props.signupLink}</a></li>
+          <li><a href={`#${this.props.loginHash}`} onClick={(e) => this.handleClick(e, 'login-form')}>{this.props.loginLink}</a></li>
+          <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.handleClick(e, 'forgotten-form')}>{this.props.forgottenLink}</a></li>
+          <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.handleClick(e, 'signup-form')}>{this.props.signupLink}</a></li>
         </ul>
       </div>
     );

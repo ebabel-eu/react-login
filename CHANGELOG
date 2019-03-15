@@ -1,6 +1,8 @@
 # Changelog
 
 ## 0.3.1
+- Fix: when going straight to the signup form, it's not possible to create a new account.
+- Fix: when logging in with the wrong password, the login is still successful.
 - Refactor:
   - use destructuring,
   - make ReactLogin.js smaller,

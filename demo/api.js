@@ -56,7 +56,7 @@ app.post('/api/login', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   // Check if the user exists.
-  const loginSuccessful = users.map(u => u.username === username && u.password === password).length !== 0;
+  const loginSuccessful = users.filter(u => u.username === username && u.password === password).length !== 0;
 
   // Login has failed.
   if (!loginSuccessful) {

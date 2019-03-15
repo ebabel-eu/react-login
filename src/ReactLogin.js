@@ -86,7 +86,7 @@ class ReactLogin extends React.Component {
           ));
 
           if (this.props.afterResetDisplayLogin) {
-            this.switchTo(e, 'login');
+            this.switchTo(e, 'login-form');
           }
         });
       })
@@ -119,7 +119,7 @@ class ReactLogin extends React.Component {
           ));
 
           if (this.props.afterSignupDisplayLogin) {
-            this.switchTo(e, 'login');
+            this.switchTo(e, 'login-form');
           }
         });
       })
@@ -131,9 +131,9 @@ class ReactLogin extends React.Component {
 
   switchTo(e, formId) {
     this.setState({
-      displayLogin: formId === 'login',
-      displayForgotten: formId === 'forgotten',
-      displaySignup: formId === 'signup',
+      displayLogin: formId === 'login-form',
+      displayForgotten: formId === 'forgotten-form',
+      displaySignup: formId === 'signup-form',
       displayLoading: formId === 'loading',
       displayError: formId === 'error',
     });
@@ -153,7 +153,7 @@ class ReactLogin extends React.Component {
 
   componentDidMount() {
     const mountTimeoutId = window.setTimeout(() => {
-      this.checkValidity('login');
+      this.checkValidity('login-form');
     }, 300);
 
     this.setState({
@@ -167,7 +167,7 @@ class ReactLogin extends React.Component {
   }
 
   checkValidity(formId) {
-    const form = document.getElementById(formId);
+    const form = document.querySelector(`.${formId}`);
 
     if (!form) {
       return;
@@ -176,13 +176,13 @@ class ReactLogin extends React.Component {
     const isValid = form.checkValidity();
 
     switch (formId) {
-      case 'login':
+      case 'login-form':
         this.setState({ validLoginForm: isValid });
         break;
-      case 'forgotten':
+      case 'forgotten-form':
         this.setState({ validForgottenForm: isValid });
         break;
-      case 'signup':
+      case 'signup-form':
         this.setState({ validSignupForm: isValid });
         break;
       default:
@@ -213,7 +213,7 @@ class ReactLogin extends React.Component {
     return (
       <div className="login">
         {this.state.displayLogin ? (
-        <form id="login" onSubmit={(e) => this.handleLogin(e)} onChange={() => this.checkValidity('login')}
+        <form className="login-form" onSubmit={(e) => this.handleLogin(e)} onChange={() => this.checkValidity('login-form')}
           action={`#${this.props.loginHash}`} method="POST">
           <TextInput
             value={this.state.username}
@@ -221,7 +221,7 @@ class ReactLogin extends React.Component {
             name="username"
             required
             placeholder={this.props.usernamePlaceholder}
-            onValueChange={(value) => this.handleUsernameChange(value, 'login')}
+            onValueChange={(value) => this.handleUsernameChange(value, 'login-form')}
             label={this.props.usernameLabel} />
 
           <PasswordInput
@@ -230,7 +230,7 @@ class ReactLogin extends React.Component {
             name="password"
             required
             placeholder={this.props.passwordPlaceholder}
-            onValueChange={(value) => this.handlePasswordChange(value, 'login')}
+            onValueChange={(value) => this.handlePasswordChange(value, 'login-form')}
             label={this.props.passwordLabel} />
 
           <SubmitButton
@@ -241,17 +241,17 @@ class ReactLogin extends React.Component {
           <Checkbox
             checked={this.state.stayLogged}
             label={`${this.props.stayLoggedLabel} ${this.props.stayLoggedDurationDescription}`}
-            onValueChange={(value) => this.handleStayLoggedChange(value, 'login')} />
+            onValueChange={(value) => this.handleStayLoggedChange(value, 'login-form')} />
 
           <ul>
-            <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.switchTo(e, 'forgotten')}>{this.props.forgottenLink}</a></li>
-            <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.switchTo(e, 'signup')}>{this.props.signupLink}</a></li>
+            <li><a href={`#${this.props.forgottenHash}`} onClick={(e) => this.switchTo(e, 'forgotten-form')}>{this.props.forgottenLink}</a></li>
+            <li><a href={`#${this.props.signupHash}`} onClick={(e) => this.switchTo(e, 'signup-form')}>{this.props.signupLink}</a></li>
           </ul>
         </form>
         ) : null}
 
         {this.state.displayForgotten ? (
-        <form id="forgotten" onSubmit={(e) => this.handleForgotten(e)} onChange={() => this.checkValidity('forgotten')}
+        <form className="forgotten-form" onSubmit={(e) => this.handleForgotten(e)} onChange={() => this.checkValidity('forgotten-form')}
           action={`#${this.props.forgottenHash}`} method="POST">
           <EmailInput
             value={this.state.email}
@@ -259,7 +259,7 @@ class ReactLogin extends React.Component {
             name="email"
             required
             placeholder={this.props.emailPlaceholder}
-            onValueChange={(value) => this.handleEmailChange(value, 'forgotten')}
+            onValueChange={(value) => this.handleEmailChange(value, 'forgotten-form')}
             label={this.props.emailLabel} />
 
           <SubmitButton
@@ -270,7 +270,7 @@ class ReactLogin extends React.Component {
         ) : null}
 
         {this.state.displayLoading ? (
-        <div id="loading">
+        <div className="loading">
           <Spinner />
           <p className="login-center">{this.props.pleaseWait}</p>
         </div>
@@ -292,7 +292,7 @@ class ReactLogin extends React.Component {
         /> : null}
 
         {this.state.displaySignup ? (
-        <form id="signup" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup')}
+        <form className="signup-form" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup-form')}
           action={`#${this.props.signupHash}`} method="POST">
           <TextInput
             value={this.state.username}
@@ -300,7 +300,7 @@ class ReactLogin extends React.Component {
             name="username"
             required
             placeholder={this.props.usernamePlaceholder}
-            onValueChange={(value) => this.handleUsernameChange(value, 'signup')}
+            onValueChange={(value) => this.handleUsernameChange(value, 'signup-form')}
             label={this.props.usernameLabel} />
 
           <PasswordInput
@@ -309,7 +309,7 @@ class ReactLogin extends React.Component {
             name="new-password"
             required
             placeholder={this.props.passwordPlaceholder}
-            onValueChange={(value) => this.handlePasswordChange(value, 'signup')}
+            onValueChange={(value) => this.handlePasswordChange(value, 'signup-form')}
             label={this.props.passwordLabel} />
 
           <EmailInput
@@ -318,7 +318,7 @@ class ReactLogin extends React.Component {
             name="email"
             required
             placeholder={this.props.emailPlaceholder}
-            onValueChange={(value) => this.handleEmailChange(value, 'signup')}
+            onValueChange={(value) => this.handleEmailChange(value, 'signup-form')}
             label={this.props.emailLabel} />
 
           <p className="email-policy">{this.props.emailPolicy}</p>
