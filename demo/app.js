@@ -107,19 +107,19 @@ class App extends React.Component {
 
         {this.state.displayDashboard ?
         <div className="dashboard">
-          <p>You are successfully logged in to this application dashboard.</p>
+          <p>Vous êtes connecté avec succès au tableau de bord de cette application.</p>
         </div>
         : null}
 
         {this.state.displayPasswordReset ?
         <div className="password-reset">
-          <p>An link has been e-mailed to you. Please follow that link to complete resetting your password.</p>
+          <p>Un lien vous a été envoyé par courrier électronique. Suivez ce lien pour completer la réinitialisation de votre mot de passe.</p>
         </div>
         : null}
 
         {this.state.displayAccountCreated ?
         <div className="account-created">
-          <p>Your account has been created. To enable it, please check your e-mail and follow the link that has been sent to you.</p>
+          <p>Votre compte a été créé. Pour l'activer, veuillez vérifier votre courrier électronique et suivre le lien qui vous a été envoyé.</p>
         </div>
         : null}
       </div>
