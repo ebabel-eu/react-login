@@ -9,7 +9,6 @@
   - use destructuring,
   - make ReactLogin.js smaller,
   - remove all IDs and only use className at most,
-
   - make one input component for text, password and email (pass type as a property), and
   - trim the input.
 - These messages should be a properties of ReactLogin, so they can be customized: "Login failed", "Password reset failed", and "Signup failed".

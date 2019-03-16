@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class InputField extends React.Component {
   handleChange(e) {
     if (typeof this.props.onValueChange === 'function') {
-      this.props.onValueChange(e.target.value);
+      this.props.onValueChange(e.target.value.trim());
     }
   }
 
