@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+- Add [redux](https://react-redux.js.org/introduction/quick-start) in demo
+- Keep redux optional to handle state because some users may not opt for Redux.
+
 ## 0.3.1
 - Fix: when going straight to the signup form, it's not possible to create a new account.
 - Fix: when logging in with the wrong password, the login is still successful.
