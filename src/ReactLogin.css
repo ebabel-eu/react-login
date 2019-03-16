@@ -18,3 +18,11 @@
   margin: 0 0 1em;
   cursor: pointer;
 }
+
+.login-center {
+  text-align: center;
+}
+
+.login input:disabled {
+  cursor: not-allowed;
+}

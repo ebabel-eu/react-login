@@ -1,29 +1,53 @@
 {
-  "name": "react-login",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+  "name": "@thomasamar/react-login",
+  "version": "0.3.1",
+  "description": "Reusable generic login, including a password reset and an account signup. It communicates with any backend web services API asynchronolously. The styling is functional but minimal, so that it's easy to customize.",
+  "keywords": [
+    "react",
+    "web component",
+    "login",
+    "signup",
+    "forgotten password"
+  ],
+  "homepage": "https://github.com/ebabel-eu/react-login/#readme",
+  "bugs": {
+    "url": "https://github.com/ebabel-eu/react-login/issues"
+  },
+  "license": "GPL-3.0",
+  "author": "Thomas Amar <hello@ebabel.eu> (https://ebabel.eu/)",
+  "contributors": [],
+  "browser": "react-login.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebabel-eu/react-login.git"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm run build && node ./demo/api.js",
+    "build": "node ./node_modules/.bin/webpack --mode production"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
-    "react-test-renderer": "^16.8.3",
-    "typescript": "^3.3.3333"
-  }
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "body-parser": "^1.18.3",
+    "css-loader": "^2.1.0",
+    "express": "^4.16.4",
+    "style-loader": "0.23.1",
+    "webpack": "4.28.3",
+    "webpack-cli": "^3.2.3"
+  },
+  "files": [
+    "react-login.js",
+    "README.MD",
+    "LICENSE",
+    "CHANGELOG",
+    "src/*",
+    ".babelrc",
+    "package.json"
+  ]
 }

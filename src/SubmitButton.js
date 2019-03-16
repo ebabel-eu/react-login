@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SubmitButton = ({label, disabled}) => (
- <input type="submit" value={label} disabled={disabled} />
+const SubmitButton = ({name, label, disabled}) => (
+ <input type="submit" name={name} value={`${label}`} disabled={disabled} />
 );
 
 SubmitButton.defaultProps = {
-  label: 'Send',
   disabled: true,
 };
 
 SubmitButton.propTypes = {
-  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
 };
 

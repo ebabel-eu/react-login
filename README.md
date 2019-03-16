@@ -1,104 +1,111 @@
-# `<Login />` component (React.js)
-Reusable generic login, including a password reset and an account signup. It communicates with any backend web services API asynchronolously. The styling is functional but minimal, so that it's easy to customize.
+# @thomasamar `<ReactLogin />` component
+Reusable generic Reactlogin, including a password reset and an account signup.
+It communicates with any backend web services API asynchronolously.
+The styling is functional but minimal, so that it's easy to customize.
 
-## Install
-```
-npm install
-```
+## Usage
 
-## Usage of the Login component
+### Install
 ```
-import Login from './Login';
-
-<Login />
+npm install @thomasamar/react-login --save
 ```
 
-or (all props are optional and have default values)
+### Use the ReactLogin component
+The props you shouldn't leave on their default values, at aminimum, are the API endpoints, since that's how the component will interface with your business logic. Each call is a POST.
 
 ```
-import Login from './Login';
+import ReactLogin from '@thomasamar/react-login';
 
-<Login
+<ReactLogin
+  loginEndpoint="https://address-of-your-api/login"
+  forgottenEndpoint="https://address-of-your-api/password"
+  signupEndpoint="https://address-of-your-api/signup"
+/>
+```
+
+All props are optional and have default values you can overwrite.
+
+```
+import ReactLogin from '@thomasamar/react-login';
+
+<ReactLogin
+  loginEndpoint="https://address-of-your-api/login"
+  forgottenEndpoint="https://address-of-your-api/password"
+  signupEndpoint="https://address-of-your-api/signup"
+
   usernameLabel="Gebruikersnaam"
   usernamePlaceholder="bartvanveldhoven"
   passwordLabel="Wachtwoord"
   passwordPlaceholder="Gebl33kteAmandel"
-  loginButtonText="Inloggen"
+  loginButtonText="Aanmelden"
   stayLoggedLabel="Blijf ingelogd"
   stayLoggedDurationDescription="voor 2 weken"
+  loginLink="Aanmelden"
   forgottenLink="Vergeten wachtwoord?"
   signupLink="Wilt u zich aanmelden voor een account?"
+  loginHash="aanmelden"
+  forgottenHash="reset-wachtwoord"
+  signupHash="nieuw-account-maken"
   emailLabel="Uw email"
   emailPlaceholder="bartvv@muziek.nl"
   forgottenButtonText="Wachtwoord reset"
   signupButtonText="Inschrijven"
+  pleaseWait="Wachten, alstublieft..."
+  emailPolicy="Uw e-mail is nodig in de geval uw vergeet uw wachtwoord en wil het reset. Uw e-mail word niet voor iets ander gebruikt."
+  errorHelpText="Wat wilt u anders doen?"
+  afterResetDisplayLogin={true}
+  afterSignupDisplayLogin={true}
+  errorTextColor="#cc0033"
+  errorHeaderFontSize="1.75em"
+  errorSubHeaderFontSize="1.5em"
+  errorLoginFailed="Aanmelden mislukt"
+  errorResetFailed="Wachtwoord resetten mislukt"
+  errorSignupFailed="Registratie mislukt"
 />
 ```
 
-## todo tasks
+If you want to display your own custom components when the password reset or the signup are successfully handled by your own API, I recommend setting these properties to `{false}`: ***afterResetDisplayLogin*** and ***afterSignupDisplayLogin***
 
-- In Login component, check if the values of the input fields are there in case of an AutoFill when the button state is being changed. If so, that could be a better solution than using the DOM directly to evaluate validity, although it woul mean handling all the validation rules in custom code managed by React.
-- Prevent double clicking on submit button based on Axios async process.
-- Display loading animation while Axios async process is ongoing.
-- After Forgotten Password and Signup, show a screen to inform user the action was (or wasn't) successfully completed, then offer a link to login, don't just go straight back to Login.
-- Make the input field [validation messages customizable](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
-- Make the whole repository into a reusable npm module React component that can be reused in apps as an npm dependency.
-- Move all components of Login into separate repositories.
-- Adapt this React.js code to also work natively in mobiles with React Native, but also take a look at [Flutter](https://flutter.dev/docs/get-started/flutter-for/react-native-devs)
-- Add more Jest unit tests.
+```
+import ReactLogin from '@thomasamar/react-login';
 
-## Available Scripts
+<ReactLogin
+  loginEndpoint="https://address-of-your-api/login"
+  forgottenEndpoint="https://address-of-your-api/password"
+  signupEndpoint="https://address-of-your-api/signup"
 
-In the project directory, you can run:
+  afterResetDisplayLogin={false}
+  afterSignupDisplayLogin={false}
+/>
+```
 
-### `npm start`
+### Successful login event
+When the login is successful, a custom event `login-successful` will be dispatched.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The detail property of that event contains the response of the web API endpoint that performed the login.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Any other code outside the scope of this component can listen for that custom event and receive the response data.
 
-### `npm test`
+### Successful password reset event
+When the Ajax call to the password reset endpoint is successful, a custom event `forgotten-successful` will be dispatched.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The detail property of that event contains the response of the web API endpoint that performed the password reset.
 
-### `npm run build`
+Any code outside the scope of this login component can listen for that event and decide what do to next.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The property afterResetDisplayLogin is set to false by default. If it is set to true, the event `forgotten-successful` will still be dispatched, and the login screen will be displayed.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Successful signup event
+When the Ajax call to the signup endpoint is successful, a custom event `signup-successful` will be dispatched.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The detail property of that event contains the response of the web API endpoint that performed the signup.
 
-### `npm run eject`
+Any code outside the scope of this login component can listen for that event and decide what do to next.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The property afterSignupDisplayLogin is set to false by default. If it is set to true, the event `signup-successful` will still be dispatched, and the login screen will be displayed.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
+You are most welcome to [contribute to `<ReactLogin />`](CONTRIBUTING.md).
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Bootstrap note
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
-
-When checking out this repository, there is no need to bootstrap it again, this was a one-off operation with the command `npx create-react-app react-login`
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-- [Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-- [Analyzing the Bundle Size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-- [Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-- [Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-- [Deployment](https://facebook.github.io/create-react-app/docs/deployment)
-- [`npm run build` fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Attributions
+- CSS only [spinner](http://tobiasahlin.com/spinkit/)

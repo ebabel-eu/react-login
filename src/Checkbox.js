@@ -12,7 +12,7 @@ class Checkbox extends React.Component {
     return (
       <label>
         <input type="checkbox"
-          checked={this.props.checked}
+          defaultChecked={this.props.checked}
           onChange={(e) => this.handleChange(e)}
         /> {this.props.label}
       </label>

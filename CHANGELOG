@@ -1,0 +1,30 @@
+# Changelog
+
+## 0.3.1
+- Fix: when going straight to the signup form, it's not possible to create a new account.
+- Fix: when logging in with the wrong password, the login is still successful.
+- Fix: when resetting an e-mail, it has to exist.
+- Fix: when creating a new user, the username and e-mail have to be unique and not already used by an existing user.
+- Refactor:
+  - use destructuring,
+  - make ReactLogin.js smaller,
+  - remove all IDs and only use className at most,
+  - make one input component for text, password and email (pass type as a property), and
+  - trim the input.
+- These messages should be a properties of ReactLogin, so they can be customized: "Login failed", "Password reset failed", and "Signup failed".
+- Translate the demo app to French.
+
+## 0.3.0
+- Make a demo that works on its own, from this repository with a small Node express.js that serves both the static client and a simple API that stores data in memory.
+- Fix setting the value of the SubmitButton component.
+- Fix handling events from the api response in the demo by adjusting how fetch handles the response.json(), which is a Promise.
+
+## v0.2.1
+- response should be response.json() instead of just response.
+- On each form field, switch from value to defaultValue because that's best practice in React forms.
+
+## v0.2.0
+- Remove Axios and use the native ES6 fetch instead, to reduce the size of the build. is-buffer, a dependency of axios, is especially big. See this article on [Axios vs fetch](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5).
+
+## v0.1.0
+- First version of the ReactLogin component.
