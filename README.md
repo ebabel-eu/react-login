@@ -58,6 +58,9 @@ import ReactLogin from '@thomasamar/react-login';
   errorTextColor="#cc0033"
   errorHeaderFontSize="1.75em"
   errorSubHeaderFontSize="1.5em"
+  errorLoginFailed="Aanmelden mislukt"
+  errorResetFailed="Wachtwoord resetten mislukt"
+  errorSignupFailed="Registratie mislukt"
 />
 ```
 

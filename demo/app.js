@@ -78,13 +78,13 @@ class App extends React.Component {
           usernamePlaceholder="rémi-martin"
           passwordLabel="Mot de passe"
           passwordPlaceholder="s013ilVert"
-          loginButtonText="Se connecter"
-          stayLoggedLabel="Rester connecté"
+          loginButtonText="Vous connecter"
+          stayLoggedLabel="Restez connecté"
           stayLoggedDurationDescription="pour 2 semaines"
-          loginLink="S'identifier"
+          loginLink="Vous connecter"
           forgottenLink="Mot de passe oublié?"
           signupLink="Voulez-vous créer un compte?"
-          loginHash="s'identifier"
+          loginHash="vous-connecter"
           forgottenHash="réinitialiser-le-mot-de-passe"
           signupHash="créer-un-nouveau-compte"
           emailLabel="Votre email"
@@ -99,6 +99,9 @@ class App extends React.Component {
           errorTextColor="#cc0033"
           errorHeaderFontSize="1.75em"
           errorSubHeaderFontSize="1.5em"
+          errorLoginFailed="Échec de la connexion"
+          errorResetFailed="La réinitialisation du mot de passe a échoué"
+          errorSignupFailed="L'inscription a échoué"
         />
         : null}
 

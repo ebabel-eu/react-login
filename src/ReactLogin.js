@@ -45,7 +45,7 @@ class ReactLogin extends React.Component {
       .then((response) => {
         response.json().then(data => {
           if (response.status !== C.HTTP_STATUS.OK) {
-            this.setState({ error: 'Login failed' });
+            this.setState({ error: this.props.errorLoginFailed });
             this.switchTo(null, 'error');
             return;
           }
@@ -73,7 +73,7 @@ class ReactLogin extends React.Component {
       .then((response) => {
         response.json().then(data => {
           if (response.status !== C.HTTP_STATUS.OK) {
-            this.setState({ error: 'Password reset failed' });
+            this.setState({ error: this.props.errorResetFailed });
             this.switchTo(null, 'error');
             return;
           }
@@ -106,7 +106,7 @@ class ReactLogin extends React.Component {
       .then((response) => {
         response.json().then(data => {
           if (response.status !== C.HTTP_STATUS.CREATED && response.status !== C.HTTP_STATUS.OK) {
-            this.setState({ error: 'Signup failed' });
+            this.setState({ error: this.props.errorSignupFailed });
             this.switchTo(null, 'error');
             return;
           }
@@ -376,6 +376,9 @@ ReactLogin.defaultProps = {
   errorTextColor: '#d80b0b',
   errorHeaderFontSize: '1.5em',
   errorSubHeaderFontSize: '1.25em',
+  errorLoginFailed: 'Login failed',
+  errorResetFailed: 'Password reset failed',
+  errorSignupFailed: 'Signup failed',
 };
 
 ReactLogin.propTypes = {
@@ -422,6 +425,9 @@ ReactLogin.propTypes = {
   errorTextColor: PropTypes.string,
   errorHeaderFontSize: PropTypes.string,
   errorSubHeaderFontSize: PropTypes.string,
+  errorLoginFailed: PropTypes.string,
+  errorResetFailed: PropTypes.string,
+  errorSignupFailed: PropTypes.string,
 };
 
 export default ReactLogin;
