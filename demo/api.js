@@ -96,7 +96,7 @@ app.post('/api/password', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   // Check if the e-mail is registered to an existing user.
-  const passwordReset = users.map(u => u.email === email).length !== 0;
+  const passwordReset = users.filter(u => u.email === email).length !== 0;
 
   log.push({
     email,
@@ -129,7 +129,7 @@ app.post('/api/signup', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   // Check the account doesn't already exist.
-  const accountCreated = users.map(u => u.username === username || u.email === email).length === 0;
+  const accountCreated = users.filter(u => u.username === username || u.email === email).length === 0;
 
   // The user can be created.
   if (accountCreated) {

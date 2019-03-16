@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import C from './constants';
-import TextInput from './TextInput';
-import PasswordInput from './PasswordInput';
-import EmailInput from './EmailInput';
+import InputField from './InputField';
 import SubmitButton from './SubmitButton';
 import Checkbox from './Checkbox';
 import ErrorScreen from './ErrorScreen';
@@ -215,7 +213,7 @@ class ReactLogin extends React.Component {
         {this.state.displayLogin ? (
         <form className="login-form" onSubmit={(e) => this.handleLogin(e)} onChange={() => this.checkValidity('login-form')}
           action={`#${this.props.loginHash}`} method="POST">
-          <TextInput
+          <InputField
             value={this.state.username}
             autoComplete="username"
             name="username"
@@ -224,7 +222,8 @@ class ReactLogin extends React.Component {
             onValueChange={(value) => this.handleUsernameChange(value, 'login-form')}
             label={this.props.usernameLabel} />
 
-          <PasswordInput
+          <InputField
+            type="password"
             value={this.state.password}
             autoComplete="password"
             name="password"
@@ -253,7 +252,8 @@ class ReactLogin extends React.Component {
         {this.state.displayForgotten ? (
         <form className="forgotten-form" onSubmit={(e) => this.handleForgotten(e)} onChange={() => this.checkValidity('forgotten-form')}
           action={`#${this.props.forgottenHash}`} method="POST">
-          <EmailInput
+          <InputField
+            type="email"
             value={this.state.email}
             autoComplete="email"
             name="email"
@@ -294,7 +294,7 @@ class ReactLogin extends React.Component {
         {this.state.displaySignup ? (
         <form className="signup-form" onSubmit={(e) => this.handleSignup(e)} onChange={() => this.checkValidity('signup-form')}
           action={`#${this.props.signupHash}`} method="POST">
-          <TextInput
+          <InputField
             value={this.state.username}
             autoComplete="username"
             name="username"
@@ -303,7 +303,8 @@ class ReactLogin extends React.Component {
             onValueChange={(value) => this.handleUsernameChange(value, 'signup-form')}
             label={this.props.usernameLabel} />
 
-          <PasswordInput
+          <InputField
+            type="password"
             value={this.state.password}
             autoComplete="new-password"
             name="new-password"
@@ -312,7 +313,8 @@ class ReactLogin extends React.Component {
             onValueChange={(value) => this.handlePasswordChange(value, 'signup-form')}
             label={this.props.passwordLabel} />
 
-          <EmailInput
+          <InputField
+            type="email"
             value={this.state.email}
             autoComplete="email"
             name="email"

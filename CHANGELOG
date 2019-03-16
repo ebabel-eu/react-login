@@ -3,6 +3,8 @@
 ## 0.3.1
 - Fix: when going straight to the signup form, it's not possible to create a new account.
 - Fix: when logging in with the wrong password, the login is still successful.
+- Fix: when resetting an e-mail, it has to exist.
+- Fix: when creating a new user, the username and e-mail have to be unique and not already used by an existing user.
 - Refactor:
   - use destructuring,
   - make ReactLogin.js smaller,
